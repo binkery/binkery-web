@@ -91,6 +91,17 @@ def write_article_to_file(article):
 <nav>
 	<ul>
         <li><a href="/">主页</a></li>
+        <li><a href="/Android/index.html">Android</a></li>
+        <li><a href="/Java/index.html">Java</a></li>
+        <li><a href="/Kotlin/index.html">Kotlin</a></li>
+        <li><a href="/Python/index.html">Python</a></li>
+        <li><a href="/FrontEnd/index.html">前端</a></li>
+        <li><a href="/OperatingSystems/index.html">操作系统</a></li>
+        <li><a href="/DataStructuresAndAlgorithms/index.html">数据结构与算法</a></li>
+        <li><a href="/ComputerNetwork/index.html">计算机网络</a></li>
+        <li><a href="/WebsiteSEO/index.html">网站建设</a></li>
+        <li><a href="/Essay/index.html">杂感随笔</a></li>
+        
 	</ul>
 </nav>
 
@@ -155,7 +166,7 @@ def dispatch_path(parent,file):
     node['content'] = get_content_from_source_file(node['source'])
     node['keywords'] = get_key_workds_from_source_file(node['source'])
     if os.path.isdir(node['source']):
-        files = sorted(os.listdir(node['source']),reverse=True)
+        files = sorted(os.listdir(node['source']),reverse=False)
         node['content'] += '\n## 文章列表 \n'
         for f in files:
             if f == 'README.md':
@@ -170,7 +181,7 @@ def dispatch_path(parent,file):
     write_article_to_file(node)
 
     if os.path.isdir(node['source']):
-        files = sorted(os.listdir(node['source']),reverse=True)
+        files = sorted(os.listdir(node['source']),reverse=False)
         for f in files :
             if f == 'README.md':
                 continue
