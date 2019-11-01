@@ -5,6 +5,7 @@ import codecs
 import datetime
 import markdown
 import time
+from bs4 import BeautifulSoup
 
 def write(path,content):
     dir = os.path.dirname(path)
@@ -26,6 +27,18 @@ def get_content_from_source_file(path):
         content = f.read()
         return content
         
+def get_key_workds_from_source_file(path):
+    if os.path.isdir(path):
+        md_file = os.path.join(path,'README.md')
+        if not os.path.exists(md_file):
+            return ''
+    else :
+        md_file = path
+    with open(md_file,'r',encoding='utf-8') as f:
+        f.readline()
+        keywords = f.readline().strip().lstrip('-')
+        return keywords
+        
 def path_to_html_path(path):
     #print('path_to_html_path ' + path)
     if path == '../content/':
@@ -35,18 +48,19 @@ def path_to_html_path(path):
     else:
         return '../html' + path[10:-2] + 'html'
         
+def remove_tags(text):
+    return BeautifulSoup(text, "lxml").text
+        
 def write_article_to_file(article):
-    #print(article['link'])
-    #print(path)
-    #print(content)
     article_content = markdown.markdown(article['content'])
     local_path = article['target']
-    article['description'] = ''
-    article['keyword'] = ''
+    #print(article_content)
+    article['description'] = remove_tags(article_content)[:100].replace('\n','')
+    #article['keywords'] = ''
     article['content'] = article_content
     print(local_path)
     template = '''
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -58,7 +72,7 @@ def write_article_to_file(article):
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#337ab7">
     <title>{article[title]} :: {site[app_name]}</title>
-    <meta name="keywords" content="{article[keyword]}">
+    <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
     <link rel="stylesheet" href="{site[app_link]}/style.css">
     <script>
@@ -135,24 +149,18 @@ def dispatch_path(parent,file):
     else :
         node['source'] = os.path.join(parent['source'],file)
         if os.path.isdir(node['source']):
-            #node['target'] = parent['target'][:-10] + '/index.html'
             node['target'] = os.path.join(parent['target'][:-10],file[3:] + '/index.html')
             node['link'] = parent['link'][:-10] + file[3:] + '/index.html'
         else:
-            #node['target'] = parent['target'][:-10] + file[3:-3] + '.html'
             node['target'] = os.path.join(parent['target'][:-10],file[3:-3] + '.html')
             node['link'] = parent['link'][:-10] + file[3:-3] + '.html'
-    #path = parentPath
     print("target = " + node['target'] + ',' + parent['target'] + ', -- file = ' + file)
-    #if childPath != '' :
-    #    path = os.path.join(parentPath,childPath)
-    #article = read_path_as_article(parent['source'])
     node['title'] = get_title_from_source_file(node['source'])
     node['content'] = get_content_from_source_file(node['source'])
+    node['keywords'] = get_key_workds_from_source_file(node['source'])
     if os.path.isdir(node['source']):
         files = sorted(os.listdir(node['source']),reverse=True)
         node['content'] += '\n## 文章列表 \n'
-        #print(' ------ article list')
         for f in files:
             if f == 'README.md':
                 continue
@@ -162,19 +170,15 @@ def dispatch_path(parent,file):
                 child_link = node['link'][:-10] + f[3:] + '/index.html'
             else:
                 child_link = node['link'][:-10] + f[3:-3] + '.html' 
-            #print(' --------======== ')
             node['content'] += '- [' + child_title + '](' + child_link + ')\n'
     write_article_to_file(node)
 
     if os.path.isdir(node['source']):
         files = sorted(os.listdir(node['source']),reverse=True)
         for f in files :
-            #print('=========' +f)
             if f == 'README.md':
-                #print('continue')
                 continue
             # 最后需要递归一下
-            #pp = os.path.join(path,f)
             dispatch_path(node,f)
           
 def date_from(y,m,d):
