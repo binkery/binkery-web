@@ -71,10 +71,10 @@ def write_article_to_file(article):
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#337ab7">
-    <title>{article[title]} :: {site[app_name]}</title>
+    <title>{article[title]} :: Binkery 技术博客</title>
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
-    <link rel="stylesheet" href="{site[app_link]}/style.css">
+    <link rel="stylesheet" href="/style.css">
     <script>
     var _hmt = _hmt || [];
         (function() {{
@@ -86,11 +86,11 @@ def write_article_to_file(article):
     </script>
 </head>
 <body>
-<header><p><a href="{site[app_link]}/">记录思考</a></p>
+<header><p><a href="://beta.binkery.com/">记录思考</a></p>
 </header>
 <nav>
 	<ul>
-        {site[nav]}
+        <li><a href="/">主页</a></li>
 	</ul>
 </nav>
 
@@ -103,12 +103,8 @@ def write_article_to_file(article):
 </div>
 
 <footer>
-     <p>
-        网站更新时间:{site[last_modify_time]}
-         网站已经运行<span class=""> {site[since_setup]} </span>天 ,
-         离域名到期 {site[to_domain]}天，
-         离空间到期 {site[to_space]} 天，</p>
-     <p>CopyRight &copy; <a href="{site[app_link]}/">SpacePage.Top</a></p>
+     <p>网站更新时间:{site[last_modify_time]}</p>
+     <p>CopyRight &copy; <a href="://beta.binkery.com/">BETA.binkery.com</a></p>
 </footer>
 </body>
 </html>
@@ -198,7 +194,7 @@ site['since_setup'] = date_from(2019,1,24)
 site['to_domain'] = date_to(2028,6,8)
 site['to_space'] = date_to(2020,12,11)
 site['app_name'] = 'iDaily'
-site['app_link'] = 'https://iDaily.binkery.com'
+site['app_link'] = 'http://beta.binkery.com'
 
 root_path = '../content'
 files = os.listdir(root_path)
