@@ -207,7 +207,7 @@ site['nav'] = nav
 
 root = {
     'source':'../content',
-    'link':'E:/code/github/binkery/html/',
+    'link':'http://beta.binkery.com/',
     'target':'../html',
     'content':''
 }
