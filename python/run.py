@@ -86,7 +86,7 @@ def write_article_to_file(article):
     </script>
 </head>
 <body>
-<header><p><a href="://beta.binkery.com/">记录思考</a></p>
+<header><p><a href="//beta.binkery.com/">记录思考</a></p>
 </header>
 <nav>
 	<ul>
@@ -104,7 +104,7 @@ def write_article_to_file(article):
 
 <footer>
      <p>网站更新时间:{site[last_modify_time]}</p>
-     <p>CopyRight &copy; <a href="://beta.binkery.com/">BETA.binkery.com</a></p>
+     <p>CopyRight &copy; <a href="//beta.binkery.com/">BETA.binkery.com</a></p>
 </footer>
 </body>
 </html>
