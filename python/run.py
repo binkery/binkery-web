@@ -86,7 +86,7 @@ def write_article_to_file(article):
     </script>
 </head>
 <body>
-<header><p><a href="//beta.binkery.com/">记录思考</a></p>
+<header><p><a href="//beta.binkery.com/">Binkery 技术博客</a></p>
 </header>
 <nav>
 	<ul>
@@ -207,14 +207,6 @@ site['to_space'] = date_to(2020,12,11)
 site['app_name'] = 'iDaily'
 site['app_link'] = 'http://beta.binkery.com'
 
-root_path = '../content'
-files = os.listdir(root_path)
-nav = ''
-#for topFile in files:
-    #article = read_path_as_article(os.path.join(root_path,topFile))
-    #nav += '<li><a href="' + site['app_link'] + article['link'] + '">' + article['title'] + '</a></li>\n'
-site['nav'] = nav
-#print(nav)
 
 root = {
     'source':'../content',
