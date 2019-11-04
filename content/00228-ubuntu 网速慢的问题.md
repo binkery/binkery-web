@@ -1,0 +1,6 @@
+# ubuntu 网速慢的问题
+- 2014-08-01 13:18:10
+- 
+- ubuntu,网速,ipv6,
+
+刚装上的ubuntu 12.10 ， 总是感觉网速有点慢，而且是那种有点特别的慢，受不鸟啊。<div>网上查了一下，大概有两种说法。</div><div><br /></div><div>说法一：域名解析的问题。据说是每次都会进行一次域名解析，所以会比较慢。</div><div>解决办法是安装一个dnsmasq的软件，安装完在配置一些文件。不过这个办法我试了一下，效果并不明显，至少我没有感觉快了。</div><div><br /></div><div>说法二：也就是我觉得OK的，ipv6的问题。这个问题可以在ubuntu中文官网上找到答案。</div><div>关键字是禁用ipv6。</div><div><br /></div><div>sudo gedit /etc/default/grub</div><div><br /></div><div>将</div><div>&nbsp; &nbsp; GRUB_CMDLINE_LINUX_DFAULT="quiet splash"</div><div>该成</div><div>&nbsp; &nbsp; GRUB_CMDLINE_LINUX_DFAULT="ipv6.disable=1 quiet splash"</div><div><br /></div><div>保存，退出。</div><div>sudo update-grub</div><div><br /></div><div>现在应该就ok了，打开网页的速度明显上去了，比较能接受了。</div>

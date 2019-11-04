@@ -1,0 +1,6 @@
+# 生成SSH keys
+- 2013-04-27 16:07:04
+- 
+- git,github,ssh,
+
+新装了ubuntu 12.10 ， 要把在Github 上的代码签出来。<div><br /></div><div>确认装了git之后，在home目录下找到一个.ssh的隐藏文件夹。</div><div>第一步：</div><div>cd ~/.ssh</div><div>第二步：</div><div>ssh-keygen -t rsa -C "your_email@example.com"</div><div>输入完后回车，会停留在下面这句话</div><div>第三步：</div><div>Enter file in which to save the key (/home/you/.ssh/id_rsa):</div><div>就是让输入要保存的位置。把you替换成你的用户名。</div><div>第四步：</div><div>之后会停留在这里，让你输入密码，输入之后是确认，还要再输入一次。一共两次。</div><div>Enter passphrase (empty for no passphrase):</div><div>第五步：</div><div>已经完成了，在.ssh文件夹下，找到一个id_rsa.pub的文件，用文本方式打开。把里面的内容添加到Github就好了。这一步参考</div><div><a href="http://www.binkery.com/post.php?p=222">http://www.binkery.com/post.php?p=222</a></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div>

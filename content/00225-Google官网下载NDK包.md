@@ -1,0 +1,6 @@
+# Google官网下载NDK包
+- 2013-04-25 12:48:47
+- 
+- google,下载,ndk,vpn,
+
+刚才在Google的官网下载NDK的包，总是下载不了，一点下载就跑到了 Installing the NDK的断落去了。试了很多次，在不同的系统，不同的电脑，不同的浏览器都试了一下。百度了一下也没有找到答案。<div><br /></div><div>于是乎，我很无耻的使用了公司的Seattle Office的VPN，一点，结果马上开始下载了……</div><div><br /></div><div>现在正在下载中，祝愿下载成功~</div>

@@ -1,0 +1,24 @@
+# Google为什么不拷贝创业公司的创意
+- 2013-09-28 09:46:25
+- 
+- google,pixelstech,创业,
+
+<p>这篇文章讲Google 为什么不 copy 创业公司的 ideas ，说明了Google 确实还是比较伟大的，文中还提到了中国的市场，不过没有明确说出是哪家公司，作者可能觉得不只是一家公司这样子，而是中国整个IT 生态都是这样子。原文标题： Why doesn't Google copy successful startup（启动，开办） ideas? 原文地址 ： http://www.pixelstech.net/article/1378900959-Why-doesn-t-Google-copy-successful-startup-ideas-  。</p>
+
+<p>Google is definitely（清楚的，明确的） one of the largest players in Internet world. It owns（拥有，承认，自己的） the most popular（流行的，普及的） search engine, mobile operating system and mapping service（地图服务）. It not only has huge（庞大的，巨大的） user base（用户基数） but also is extremely（非常的，极端的） rich. It can copy and create any product that is proven（证明） to be successful with its talent pool（人才库） and money. But why doesn't Google copy those successful startup ideas?</p>
+
+<p>Based on the current status quo（status quo现状） and culture gene（文化基因） of Google, there are several reasons Google doesn't copy startup ideas.</p>
+
+<p>First, Google has challenges（挑战，怀疑） that startups don't necessarily（必要的，必定的） have early on（经验，继续下去）. For example, Google must launch（启动，发射，发行） its products in a scalable（可伸缩的） way from the very beginning, this process（处理，加工，程序） is a non-functional（无功能的） factor（因素，要素） that startups usually don't put too much effort on at the initial stage（原始期）. Additionally（此外）, Google will need to integrate（使完整） with other Google services.</p>
+
+<p>Second, once a startup has proven an idea successful, it already（已经） has traction（牵引）. Just because they're Google doesn't mean they must win. One example is Google Drive and Dropbox. But the weird（不可思议的） thing is this same story in China has a different result, if a startup proves to be successful, then it has a big chance（机会） being copied by IT giants（巨人，伟人）.</p>
+
+<p>Thrid, while a startup can make money through（通过，凭借） revenue（收益） or an acquisition（收购）, Google must make money through revenue. Some ideas might not have a high chance of making much revenue, but might be good acquisition targets（目标） for one of many companies for another reason.一些创意可能很难得赚钱的好机会，但一些公司会因为其他原因，把他们当成很好的收购目标，。</p>
+
+<p>Fourth, although（虽然，尽管） many people have a hard time believing this（费了很多时间相信）, Google really（实际上，真实地） does want to be ethical（伦理的，道德的）（to ethical诚实可靠）. This is important to employees AND important to them as a business. If Google started pulling a Zynga and ripping off（rip off 偷窃，扯掉，欺诈，剥削） other people's ideas, it would tarnish（玷污，使失去光泽） its reputation（名望，声誉）, resulting in losing current employees and recruits（新成员）.</p>
+
+<p>Actually Google did copy some products such as web mail, calendar etc...But Google tries to make these products much better so that users can forget those pioneers.This is where Google is excellent（卓越的，极好的） at. Maybe some other IT giants can learn something from Google.</p>
+
+
+
+

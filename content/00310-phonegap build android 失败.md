@@ -1,0 +1,22 @@
+# phonegap build android 失败
+- 2013-10-01 02:19:01
+- 
+- android,ubuntu,环境变量,phonegap,sdk,
+
+在安装完phonegap 后<div>创建phonegap app</div>
+<div class="code">phonegap create app-name<br>
+cd app-name<br>
+phonegap build android</div>
+
+<div>这个时候如果本地有android环境的话，会启动本地的android来编译，如果本地没有的话，会启动远程的编译。</div>
+<div class="code">detecting Android SDK environment...<br>
+using the remote environment&nbsp;</div>
+
+<div>然后会让你使用用户们密码登录。这个时候说明你本地的android sdk 环境没有配置好。</div><div>之前的开发，一般情况下，为了使用adb命令，把 ～/android-sdk-linux/platform-tools 添加到环境变量里，但是用phonegap 的话，它还需要另外一个目录，~/android-sdk-linux/tools 。这个目录里有“android”这个命令。把它增加到环境变量里，然后在尝试</div>
+<div class="code">phonegap build android<br>
+detecting Android SDK enviroment...<br>
+using the local environment<br>
+compiling Android...<br>
+sucessfully compiled Android app</div>
+
+<div><br /></div><div>恭喜你，成功了。&nbsp;</div>

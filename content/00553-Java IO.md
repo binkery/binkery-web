@@ -1,0 +1,76 @@
+# Java IO
+- 2016-05-10 09:58:38
+- Java
+- java,io,
+
+<!--markdown-->在刚开始学 Java 的时候，一看到 java io 的时候就头大，更别说 java nio 了，以致于每次都是一需要写相关的代码都需要网上搜一下。
+
+当然现在回过头来看 java io，感觉它们已经不是什么问题了，但是直到想写这么一篇博客的时候，我才发现，还是有很多地方之前的理解还是有问题的。
+
+我对 java io 的大致总结是一个接口，四个重要基类和一个超人类。
+
+# 一个接口 Closeable
+
+根据 Java 的习惯，一般 able 的都是接口，这里的 Closeable 是一个接口，继承于 java.lang.AutoCloaseable 接口，close() 方法可能会抛出 IOException 异常。所有流的实现类都必须实现这个接口，也就是说所有的流都有关闭的方法，并且关闭的时候是会抛异常的。
+
+# 四大基类
+
+在 java.io 包中所有的 io 的现实都是这四个类的子类，包括其他一些第三方的扩展的 io 类，也都大体超不出这个四个类的范围。四个类中，两个字节流，两个字符流，两个输入流，两个输出流，两两组合，总共四种。
+
+* InputStream
+* OutputStream
+* Reader
+* Writer
+
+## 字节流和字符流
+
+字节流操作的对象是字节，或者字节数组，下面是 InputStream 的 API，
+
+    int read()
+    int read(byte[] b)
+    int read(byte[] b,int off,int len)
+
+read() 方法每次调用返回一个字节的内容，read(byte[]) 方法每次调用，会往 byte[] 中填充读取的数据，并且返回读取的字节个数。这两个方法是 InputStream 最重要的方法，在理解字节流和字符流的时候，其他的 API 不要关心，就关心这几个就行。
+
+Reader 对应的是字符流，与字节流相比，字符流操作的是字符（不是字符串啊！），Reader 最重要的方法也是 read() 方法，但是区别是 read() 方法返回的是一个字符（character）, 下面是 Reader 的 API
+
+    int read()
+    int read(char[] cbuf)
+    int read(char[] cbuf,int off,int len)
+
+其他的各种 XxxInputStream 和 XxxReader 都是对上面几个方法进行了封装。封装后 API 会更加丰富，但是要不忘初心，其本质就是这几个方法。
+
+上面是读的，写的也是一样的，OutputStream 和 Writer 也是有相对应的 API 设计。
+
+# 输入流和输出流
+
+有输入就有输出，输入分 InputStream 和 Reader 两大类，输出分 OutputStream 和 Writer 两大类。输入和输出是相对于当前程序来说，或者说相对于当前虚拟机来说的。比如程序从文件中读取数据，那么这是一个输入流，相对应的，往文件里写数据，这是一个输出流。
+
+# 带缓冲的流
+
+BufferedInputStream，BufferedOutputStream，BufferedReader，BufferedWriter 都是带缓冲的。
+
+# 数组流
+
+对于字节流，有 ByteArrayInputStream 和 ByteArrayOutputStream，对于字符流有 CharArrayReader 和 CharArrayWriter。
+
+# 文件流
+
+FileInputStream ，FileOutputStream，FileReader 和 FileWriter。文件流其操作的内容是文件，这个在项目是经常会用到的。
+
+# 过滤器流
+
+FilterInputStream，FilterOutputStream ,FilterReader,FilterWriter
+
+# 对象流
+
+ObjectInputStream，ObjectOutputStream
+
+# 管道流
+
+PipedInputStream，PipedOutputStream，PipedReader，PipedWriter。在现场之间传输数据的时候，我们可能会用到管道，A 线程创建输入管道，B 线程创建输出管道，两个管道一连接，就可以实现 A 到 B 的数据传输了。要实现双向的数据传输，那就需要 A 和 B 都分别持有一个输入管道和输出管道了。
+
+
+# RandomAccessFile
+
+RandomAccessFile 是 java.io 包里超出三界外，不在五行中的那个，神通广大，可读可写，可操作字节，可操作字符，可以往前移，可以往后挪。RandomAccessFile 对文件读写操作提供了非常友好的 API。

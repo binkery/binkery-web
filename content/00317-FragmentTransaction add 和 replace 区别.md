@@ -1,0 +1,254 @@
+# FragmentTransaction add 和 replace 区别
+- 2016-03-22 10:25:23
+- Android
+- android,fragment,add,replace,
+
+<!--markdown-->使用 FragmentTransaction 的时候，它提供了这样两个方法，一个 add ， 一个 replace ，对这两个方法的区别一直有点疑惑。我觉得使用 add 的话，在按返回键应该是回退到上一个 Fragment，而使用 replace 的话，那个别 replace 的就已经不存在了，所以就不会回退了。但事实不是这样子的。add 和 replace 影响的只是界面，而控制回退的，是事务。
+
+
+<!--more-->
+
+
+    public abstract FragmentTransaction add (int containerViewId, Fragment fragment, String tag)
+
+> Add a fragment to the activity state. This fragment may optionally also have its view (if Fragment.onCreateView returns non-null) into a container view of the activity.
+
+add 是把一个fragment添加到一个容器 container 里。
+
+    public abstract FragmentTransaction replace (int containerViewId, Fragment fragment, String tag)
+
+> Replace an existing fragment that was added to a container. This is essentially the same as calling remove(Fragment) for all currently added fragments that were added with the same containerViewId and then add(int, Fragment, String) with the same arguments given here.
+
+replace 是先remove掉相同id的所有fragment，然后在add当前的这个fragment。
+
+在大部分情况下，这两个的表现基本相同。因为，一般，咱们会使用一个FrameLayout来当容器，而每个Fragment被add 或者 replace 到这个FrameLayout的时候，都是显示在最上层的。所以你看到的界面都是一样的。但是，使用add的情况下，这个FrameLayout其实有2层，多层肯定要比一层的来得浪费，所以还是推荐使用replace。当然有时候还是需要使用add的。比如要实现轮播图的效果，每个轮播图都是一个独立的Fragment，而他的容器FrameLayout需要add多个Fragment，这样他就可以根据提供的逻辑进行轮播了。
+
+而至于返回键的时候，这个跟事务有关，跟使用add还是replace没有任何关系。
+
+2015.08.04 更新。
+
+发现这篇博文被搜索得挺多的，上面是分析是在官方文档上的基础上加上一些个人的猜测，为了避免误人子弟，下面从代码实现的角度做了些分析。希望能帮到大家，也烦请大家在转载的同时注明出处，毕竟写这么一篇博文确实很不容易（binkery）。
+
+[Android Fragment 和 FragmentManager 的代码分析](http://www.binkery.com/archives/492.html) 这篇文章也是从代码的角度分析了 FragmentManager 的工作机制。
+
+FragmentManager 是一个抽象类，实现类是 FragmentManagerImpl ，跟 FragmentManager 在同一个类文件里。FragmentTransaction 也是一个抽象类，具体实现是 BackStackRecord 。BackStackRecord 其实是一个封装了一个队列。咱们看 add 方法和 replace 方法。
+
+add 方法和 replace 方法都是把一个操作 OP_XX 放入到队列里，Op 是其内部封装的一个操作的类。在 BackStackRecord 的 run 方法里，每次会从队列的头（mHead）获取一个操作 Op ,如果 Op 操作是 add ，则调用 FragmentManager 的 addFragment() 方法，如果 Op 操作是 replace ，则先调用 FragmentManager 的 removeFragment() 方法，然后再调用 addFragment() 方法。
+
+下面是 add 方法。
+	
+    public FragmentTransaction add(int containerViewId, Fragment fragment, String tag) {
+        doAddOp(containerViewId, fragment, tag, OP_ADD);
+        return this;
+    }
+
+下面是 replace 方法。
+
+    public FragmentTransaction replace(int containerViewId, Fragment fragment, String tag) {
+        if (containerViewId == 0) {
+            throw new IllegalArgumentException("Must use non-zero containerViewId");
+        }
+
+        doAddOp(containerViewId, fragment, tag, OP_REPLACE);
+        return this;
+    }
+
+add 和 replace 方法都是调用的 doAddOp 方法。也就是把一个操作 Op 添加到队列。
+
+    private void doAddOp(int containerViewId, Fragment fragment, String tag, int opcmd) {
+        fragment.mFragmentManager = mManager;
+
+        if (tag != null) {
+            if (fragment.mTag != null && !tag.equals(fragment.mTag)) {
+                throw new IllegalStateException("Can't change tag of fragment "
+                        + fragment + ": was " + fragment.mTag
+                        + " now " + tag);
+            }
+            fragment.mTag = tag;
+        }
+
+        if (containerViewId != 0) {
+            if (fragment.mFragmentId != 0 && fragment.mFragmentId != containerViewId) {
+                throw new IllegalStateException("Can't change container ID of fragment "
+                        + fragment + ": was " + fragment.mFragmentId
+                        + " now " + containerViewId);
+            }
+            fragment.mContainerId = fragment.mFragmentId = containerViewId;
+        }
+
+        Op op = new Op();
+        op.cmd = opcmd;
+        op.fragment = fragment;
+        addOp(op);
+    }
+
+run 方法才是真正执行的方法。什么时候执行先不考虑，只需要知道一系列的操作会一次执行，而不是一个操作执行一次。
+run 方法有点大，就看一下 while 循环开始和结束的时候，以及 switch case 里 OP_ADD 和 OP_REPLACE 分支就可以了。 
+
+    public void run() {
+        if (FragmentManagerImpl.DEBUG) {
+            Log.v(TAG, "Run: " + this);
+        }
+
+        if (mAddToBackStack) {
+            if (mIndex < 0) {
+                throw new IllegalStateException("addToBackStack() called after commit()");
+            }
+        }
+
+        bumpBackStackNesting(1);
+
+        SparseArray<Fragment> firstOutFragments = new SparseArray<Fragment>();
+        SparseArray<Fragment> lastInFragments = new SparseArray<Fragment>();
+        calculateFragments(firstOutFragments, lastInFragments);
+        beginTransition(firstOutFragments, lastInFragments, false);
+        // 获取队列的头
+        Op op = mHead;
+        while (op != null) {
+            switch (op.cmd) {
+                case OP_ADD: {
+                    Fragment f = op.fragment;
+                    f.mNextAnim = op.enterAnim;
+                    mManager.addFragment(f, false);//添加
+                }
+                break;
+                case OP_REPLACE: {
+                    Fragment f = op.fragment;
+                    if (mManager.mAdded != null) {
+                        for (int i = 0; i < mManager.mAdded.size(); i++) {
+                            Fragment old = mManager.mAdded.get(i);
+                            if (FragmentManagerImpl.DEBUG) {
+                                Log.v(TAG,
+                                        "OP_REPLACE: adding=" + f + " old=" + old);
+                            }
+                            if (f == null || old.mContainerId == f.mContainerId) {
+                                if (old == f) {
+                                    op.fragment = f = null;
+                                } else {
+                                    if (op.removed == null) {
+                                        op.removed = new ArrayList<Fragment>();
+                                    }
+                                    op.removed.add(old);
+                                    old.mNextAnim = op.exitAnim;
+                                    if (mAddToBackStack) {
+                                        old.mBackStackNesting += 1;
+                                        if (FragmentManagerImpl.DEBUG) {
+                                            Log.v(TAG, "Bump nesting of "
+                                                    + old + " to " + old.mBackStackNesting);
+                                        }
+                                    }
+                                    mManager.removeFragment(old, mTransition, mTransitionStyle);//删除
+                                }
+                            }
+                        }
+                    }
+                    if (f != null) {
+                        f.mNextAnim = op.enterAnim;
+                        mManager.addFragment(f, false);//添加
+                    }
+                }
+                break;
+                case OP_REMOVE: {
+                    Fragment f = op.fragment;
+                    f.mNextAnim = op.exitAnim;
+                    mManager.removeFragment(f, mTransition, mTransitionStyle);
+                }
+                break;
+                case OP_HIDE: {
+                    Fragment f = op.fragment;
+                    f.mNextAnim = op.exitAnim;
+                    mManager.hideFragment(f, mTransition, mTransitionStyle);
+                }
+                break;
+                case OP_SHOW: {
+                    Fragment f = op.fragment;
+                    f.mNextAnim = op.enterAnim;
+                    mManager.showFragment(f, mTransition, mTransitionStyle);
+                }
+                break;
+                case OP_DETACH: {
+                    Fragment f = op.fragment;
+                    f.mNextAnim = op.exitAnim;
+                    mManager.detachFragment(f, mTransition, mTransitionStyle);
+                }
+                break;
+                case OP_ATTACH: {
+                    Fragment f = op.fragment;
+                    f.mNextAnim = op.enterAnim;
+                    mManager.attachFragment(f, mTransition, mTransitionStyle);
+                }
+                break;
+                default: {
+                    throw new IllegalArgumentException("Unknown cmd: " + op.cmd);
+                }
+            }
+
+            op = op.next;//队列的下一个
+        }
+
+        mManager.moveToState(mManager.mCurState, mTransition,
+                mTransitionStyle, true);
+
+        if (mAddToBackStack) {
+            mManager.addBackStackState(this);
+        }
+    }
+
+BackStackRecord 的构造器里参数列表里有一个 FragmentManager ，所有 BackStackRecord 其实是有一个 FragmentManager 的引用的，BackStackRecord 可以直接调用 FragmentManager 的 addFragment 方法。
+下面是 FragmentManager 的 addFragment() 方法，每次 add 一个 Fragment，Fragment 对象都会被放入到 mAdded 的容器里。
+
+    public void addFragment(Fragment fragment, boolean moveToStateNow) {
+        if (mAdded == null) {
+            mAdded = new ArrayList<Fragment>();
+        }
+        if (DEBUG) Log.v(TAG, "add: " + fragment);
+        makeActive(fragment);
+        if (!fragment.mDetached) {
+            if (mAdded.contains(fragment)) {
+                throw new IllegalStateException("Fragment already added: " + fragment);
+            }
+            mAdded.add(fragment);
+            fragment.mAdded = true;
+            fragment.mRemoving = false;
+            if (fragment.mHasMenu && fragment.mMenuVisible) {
+                mNeedMenuInvalidate = true;
+            }
+            if (moveToStateNow) {
+                moveToState(fragment);
+            }
+        }
+    }
+
+有时候，咱们 add Fragment A， 然后 add Fragment B，B 把 A 都覆盖了，点击菜单的时候 A 和 B 的菜单选项都出来了，这是为什么？原因在下面。当在创建 OptionsMenu 的时候，FragmentManager 遍历了 mAdded 容器，所以 A 和 B 的菜单都被添加进来了。也就是说使用 add 的方式，虽然 B 把 A 覆盖住了，但是 A 还是存活的，而且是活动着的。
+
+    public boolean dispatchCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        boolean show = false;
+        ArrayList<Fragment> newMenus = null;
+        if (mAdded != null) {
+            for (int i=0; i<mAdded.size(); i++) {
+                Fragment f = mAdded.get(i);
+                if (f != null) {
+                    if (f.performCreateOptionsMenu(menu, inflater)) {
+                        show = true;
+                        if (newMenus == null) {
+                            newMenus = new ArrayList<Fragment>();
+                        }
+                        newMenus.add(f);
+                    }
+                }
+            }
+        }
+        
+        if (mCreatedMenus != null) {
+            for (int i=0; i<mCreatedMenus.size(); i++) {
+                Fragment f = mCreatedMenus.get(i);
+                if (newMenus == null || !newMenus.contains(f)) {
+                    f.onDestroyOptionsMenu();
+                }
+            }
+        }
+        
+        mCreatedMenus = newMenus;
+        
+        return show;
+    }

@@ -1,0 +1,77 @@
+# Android面试题目
+- 2015-03-06 04:39:16
+- Android
+- android,java,面试,
+
+<!--markdown-->这里收集了一些Android面试、笔试题，在找工作面试的时候经常遇到，把这些题都搞差不多明白了，对Android已经有一定的了解了。刚开始找工作的时候没有准备好，浪费了一些机会，所以面试前还是准备一下，虽然有工作经验，虽然有项目经验，面试终究是面试。当然Android的知识不止这些，看看Android的官方文档就知道了，而且文档有时候也是不详细，还得看源代码。总之，这是一个很庞大的东西，你喜欢也好，不喜欢也好，Android就摆在那，工作机会也摆在那。
+
+
+<!--more-->
+
+
+ - 什么是Activity?
+ - 请描述一下Activity生命周期。
+ - 两个Activity之间跳转时必然会执行的是哪几个方法。
+ - 横竖屏切换时候Activity的生命周期。
+ - 如何将一个Activity设置成窗口的样式。
+ - 你后台的Activity被系统 回收怎么办？
+ - 如何退出Activity？如何安全退出已调用多个Activity的Application？
+ - 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？
+ - 两个Activity之间怎么传递数据？
+ - 怎么让在启动一个Activity是就启动一个service？
+ - 同一个程序，但不同的Activity是否可以放在不同的Task任务栈中？
+ - Activity怎么和service绑定，怎么在activity中启动自己对应的service？
+ - 什么是Service以及描述下它的生命周期。
+ - Service有哪些启动方法，有什么区别，怎样停用Service？
+ - 不用service，B页面为音乐播放，从A跳转到B，再返回，如何使音乐继续播放？
+ - 什么是IntentService？有何优点？
+ - 什么时候使用Service？
+ - 请描述一下Intent 和 Intent Filter。
+ - Intent传递数据时，可以传递哪些类型数据？
+ - 说说Activity，Intent，Service是什么关系 。
+ - 请描述一下Broadcast Receiver。
+ - 在manifest和代码中如何注册和使 用 broadcast receiver 。
+ - 请介绍下ContentProvider是如何实现数据共享的。
+ - 请介绍下Android的数据存储方式。
+ - 为什么要用ContentProvider？它和sql的实现上有什么差别？
+ - 请介绍下Android中常用的五种布局。
+ - 谈谈UI中， Padding和Margin有什么区别？
+ - widget相对位置的完成在antivity的哪个生命周期阶段实现。
+ - 请解释下在单线程模型中Message、Handler、Message Queue、Looper之间的关系。
+ - AIDL的全称是什么？如何工作？能处理哪些类型的数据？
+ - 请解释下Android程序运行时权限与文件系统权限的区别。
+ - 系统上安装了多种浏览器，能否指定某浏览器访问指定页面？
+ - 对多线程的运用和理解，及多线程之间handle的传值。
+ - 对android虚拟机的理解，包括内存管理机制垃圾回收机制。
+ - Framework工作方式及原理，Activity是如何生成一个view的，机制是什么。
+ - android本身的一些限制，比如apk包大小限制，读取大文件时的时间限。
+ - 如何加载的音乐信息，如何改善其效率。
+ - ListView如何提高其效率？
+ - 启动应用后，改变系统语言，应用的语言会改变么？
+ - 启动一个程序，可以主界面点击图标进入，也可以从一个程序中跳转过去，二者有什么区别？
+ - Android程序与Java程序的区别？
+ - Android中Task任务栈的分配。
+ - 在Android中，怎么节省内存的使用，怎么主动回收内存？
+ - 不同工程中的方法是否可以相互调用？
+ - 在Android中是如何实现判断区分通话记录中的电话状态，去电，来电、未接来电？
+ - dvm的进程和Linux的进程, 应用程序的进程是否为同一个概念
+ - sim卡的EF 文件有何作用
+ - 如何判断是否有SD卡？
+ - 嵌入式操作系统内存管理有哪几种， 各有何特性。
+ - 什么是嵌入式实时操作系统, Android 操作系统属于实时操作系统吗?
+ - 一条最长的短信息约占多少byte? 
+ - Linux中跨进程通信的几种方式 。
+ - 谈谈对Android NDK的理解。
+ - 谈谈Android的优点和不足之处。
+ - Android系统中GC什么情况下会出现内存泄露呢？
+ - Android UI中的View如何刷新。
+ - 简单描述下Android 数字签名。
+ - 什么是ANR 如何避免它？
+ - android中的动画有哪几类，它们的特点和区别是什么？
+ - handler机制的原理。
+ - android中线程与线程，进程与进程之间如何通信。
+ - 说说mvc模式的原理，它在android中的运用。
+ - android中有哪几种解析xml的类，官方推荐哪种？以及它们的原理和区别。
+ - DDMS与TraceView的区别？ 
+ - res目录有默认几项resource。
+ - android的哪个版本是一次重大的升级？

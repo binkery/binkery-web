@@ -1,0 +1,95 @@
+# Android 中 Activity 4 种启动模式
+- 2016-05-17 03:38:22
+- Android
+- Android,Activity,启动模式,
+- Android启动模式,Activity启动模式
+
+
+Activity 是 Android 四大组件中，唯一一个直接显示在屏幕上，并且与用户直接交互的组件。Android 为 Activity 设计了四种不同的启动模式，让开发者得以设计更好的用户体验。有一篇文章，很推荐阅读：<http://inthecheesefactory.com/blog/understand-android-activity-launchmode/en>
+
+# Using the manifest file
+
+> When you declare an activity in your manifest file ,you can specify how the activity should associate with tasks when it starts.
+
+在 Manifest 文件中定义 <activity\> 元素的时候，可以指定 launchMode 属性。
+
+    <activity
+            android:name=".SingleTaskActivity"
+            android:label="singleTask launchMode"
+            android:launchMode="singleTask">
+
+## 1. standard 
+ 
+标准的启动方式，也是默认的启动方式，每一个 Intent 都会导致一个新的 Activity 被创建，并放置于栈顶。这个看上去很简单的模式，其实还是有很多坑在里面的。
+
+在 Android Lollipop(5.0) 之前，不管 Intent 是从相同的应用内发出的，还是从其他应用发出的，这个新的 Activity 都会被放入发起者的栈的顶部。也就是谁发起的 Intent,Actvity 就被放入谁的栈顶。这样，用户只能完成栈顶的 Activity 的操作，或者按返回键，才能回到发起者的 Activity 界面。假设我们开发一个编写邮件的 Activity，在插入图片的时候，我们调用了系统的相册，那么用户只能在相册中完成某个图片的选择，或者按返回键才能回到编写邮件的 Activity。
+
+而 Android 认为这样的用户体验并不好，于是在 Android 5.0 做了一些修改。如果启动的 Activity 是在同一个应用内的，效果和 Android 5.0 之前的是一致的。如果是不同的应用，一个新的栈会被创建，新的 Activity 会被放入新栈的栈顶，这个时候就是两个任务栈了，用户可以通过 Task Manager 来切换任务栈，这样用户可以回到上一个 Activity，而不必非得操作完当前的 Activity 才能返回。
+
+## 2. singleTop 
+ 
+singleTop 模式和 standard 模式大致是相同的，在调用者的栈顶会放入新的 Activity，区别是，如果启动的时候，调用者的栈顶已经存在该 Activity 的实例，则重用这个实例。这个被重用的 Activity 实例会收到 Activity.onNewIntent() 的回调。
+
+一个 singleTop 模式的 Activity 需要处理好 onCreate() 和 onNewIntent() 方法。
+
+> Note : When a new instance of an acitivity is created , the user can press the Back button to reture to the previous activity.But when an existing instance of an activity handles a new intent , the user cannot press the Back button to return to the state of the activity before the new intent arrived in onNewIntent().
+
+当一个 Activity 实例被创建，用户可以点击返回键回到上一个 Activity，如果是一个已存在的 Activity 处理了新的 Intent 请求，用户点击返回是不会回到未处理 intent 之前的状态的。
+
+如果你要启动的 Activity 存在另外一个任务栈的栈顶，该 Activity 实例是不会处理你的 Intent 请求的。如果这个 Activity 属于另外一个应用，行为和 standard 模式是一样的，在 Android 5.0 之前，Activity 被创建并且置于调用者的栈顶，在 Android 5.0 上，一个新的任务栈会被创建。
+
+## 3. singleTask 
+
+singleTask 和 standard 模式与 singleTop 模式有很大的区别。一个 singleTask 启动模式的 Activity 在系统中只会存在一个实例。
+
+### 在同一个应用内
+
+如果没有 singleTask 的 Activity 存在于当前系统，一个新的实例会被创建，并且置于相同的栈顶。但如果已经存在一个 Activity 实例了，所有在该 Activity 实例之上的其他 Activity 会被销毁，singleTask 的 Activity 会出现在栈顶。这个时候，singleTask 的 Activity 会收到 onNewIntent() 方法的回调。
+
+在官方文档中，这么说：
+
+> he system creates a new task and instantiates the activity at the root of the new task.
+
+但实际上好像并不是这样子，我们可以通过命令行 dumpsys activity 查看任务栈的列表。如果你需要像官方文档那样的效果，一个新的任务栈被创建，你需要使用 taskAffinity 属性。代码如下：
+
+    <activity
+            android:name=".SingleTaskActivity"
+            android:label="singleTask launchMode"
+            android:launchMode="singleTask"
+            android:taskAffinity="">
+
+### 不在同一个应用
+
+当一个 Intent 被发送到其他的应用，并且没有任何 Activity 实例存在于系统中，那么会创建一个新的任务栈，并且创建新的 Activity 实例放在栈里。
+
+如果当前系统中的任一任务栈中存在一个 Activity 实例，那么这个任务栈的中，位于这个 Activity 实例上方的其他 Acitivity 都会被销毁，singleTask Activity 实例被置于栈顶。这个时候如果用户点击返回键，并不是从这个 singleTask 的 Activity 直接返回到调用者，而是需要先经过 singleTask 的 Activity 所在的任务栈的所有 Activity，才会回到调用者那。
+
+## 4. singleInstance 
+
+singleIntance 和 singleTask 大致是一样的，系统中只会存在一个 Activity 实例。区别是，singleIntsance 的 Activity 所在的任务栈只存在一个 Activity，意思是说，这个任务栈只有一个 Activity 实例，如果这个 Activity 实例调用了另外一个 Activity，一个新的任务栈会被创建。
+
+但是事实上，结果总是有点诡异。通过 dumpsys 命令，我们能看出有两个任务栈存在，但是通过 Task Manager，我们只能看到一个任务，这样，虽然有一个任务一直在后台运行，但是我们并没有办法让这个任务回到前台。这个时候，taskAffinity 属性又再次被需要了，如果我们为这个 singleInstance Activity 添加 taskAffinity 属性，那么在 Task Manager 就可以看到两个任务了。
+
+## Using Intent flags
+
+When starting an activity , you can modify the default association of an activity to its taks by including flags in the intent that you deliver to startActivity() . flags 有如下几种取值：
+
+### FLAG\_ACTIVITY\_NEW\_TASK
+
+Start the activity in a new task . 行为和 “singleTask” 的启动模式是一样的。
+
+### FLAG\_ACTIVITY\_SINGLE\_TOP
+
+和 “singleTop” 的启动模式一样，如果栈顶已经有这个 Activity 了，就重用这个 Activity，这个 Activity 会收到 newIntent() 的回调。
+
+### FLAG\_ACTIVITY\_CLEAR\_TOP
+
+这个 flag 没有对应的 luanchMode 。
+
+如果被启动的 Activity 已经存在，那么，位于这个 Activity 上面的其他 Activity 会被销毁，而那个被启动的 Activity 会收到 newIntent() 回调。If the activity being started is already running the current task , then instead of launching a new instance of that activity , all of the other activitys on top of it are destroyed and this intent is delivered to the resumed instance of the activity(now on top) , throgh onNewIntent().
+
+FLAG\_ACTIVITY\_CLEAR\_TOP  is most often used in conjunction with FLAG\_ACTIVITY\_NEW\_TASK . When used together , these flags are a way of locating an existing activity in another task and putting it in a position when it can respond to the intent .
+
+> Note : If the launch mode of the designated activity is "standard",it too is removed from the stack and a new instance is launched in its place to handle the incoming intent . That's because a new instance is always created for a new intent when the launch mode is "standard".
+
+[Android知识点整理](/archives/541.html)

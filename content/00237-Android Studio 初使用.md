@@ -1,0 +1,6 @@
+# Android Studio 初使用
+- 2013-05-16 03:33:46
+- 
+- android,studio,
+
+刚下载了Android Studio , 381Mb 大小 ， 下载完解压就OK 了。 在bin目录下有个studio.sh的文件，用终端打开，很顺利运行了。<div><br /></div><div>界面感觉很简单，有点丑。不过能用就好。</div><div><br /></div><div>我的Eclipse ADT 还没有升级到最近的版本，所以还没有导出项目，就新建一个demo试试。</div><div><br /></div><div>整个过程基本上跟用Eclipse一样，就是一个问题，点 Finish 后，弹出一个小框，显示&nbsp;</div><div><div style="word-wrap: break-word; font-family: 宋体, 'sans serif', tahoma, verdana, helvetica; font-size: 16px; line-height: 24px;"><br /></div><div style="word-wrap: break-word; font-family: 宋体, 'sans serif', tahoma, verdana, helvetica; font-size: 16px; line-height: 24px;">Download http://services.gradle.org/distributions/gradle-1.6-bin.zip</div></div><div style="word-wrap: break-word; font-family: 宋体, 'sans serif', tahoma, verdana, helvetica; font-size: 16px; line-height: 24px;"><br /></div><div style="word-wrap: break-word; font-family: 宋体, 'sans serif', tahoma, verdana, helvetica; font-size: 16px; line-height: 24px;">已经很长时间了，一直在 Downloading , 悲剧的是，这个小框没有关闭的按钮，取消不了...</div>

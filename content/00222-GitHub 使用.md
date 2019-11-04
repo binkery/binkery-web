@@ -1,0 +1,6 @@
+# GitHub 使用
+- 2014-08-01 12:56:54
+- 
+- git,github,ssh,
+
+GitHub是一个开源的代码管理的平台（我的理解）。在上面新建public的仓库是免费的，private是收费的。<div>使用也还算简单，建立帐号，然后新建一个仓库，就有一个空的仓库了。</div><div>迁出仓库的方式有三种。</div><div>HTTP：有读写权限，不过在push代码的时候貌似有问题，我没有push成功，在stackoverfollow上可以找到这个问题，推荐使用SSH方式。</div><div>SSH：这个方式成功使用，下面一下我的用法。</div><div>Git Read-Only：只有读的权限</div><div><br /></div><div>在AccoutSetting里，找到一个SSH keys ， 点击‘Add SSH key’，‘title’可以不写。‘key’里输入你的key。</div><div>key获取的方法在页面上有个链接，‘genrerating SSH keys’ 上面有教，在你ubuntu用户目录下有个隐藏的.ssh文件夹，里面有个id_rsa.pub文件，用记事本打开，把里面的内容复制出来，粘贴到‘key’里，保存一下。就OK了。</div><div><br /></div><div>然后用SSH的方式，迁出仓库，更新和提交代码都是OK的。</div><div><br /></div><div>我新建的github项目：</div><div>https://github.com/binkery/simpleweather.git</div><div>git@github.com:binkery/simpleweather.git</div><div><br /></div><div><a href="https://github.com/binkery/simpleweather">https://github.com/binkery/simpleweather</a></div><div><br /></div><div>o(∩∩)o...哈哈</div>

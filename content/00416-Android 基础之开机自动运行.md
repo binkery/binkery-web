@@ -1,0 +1,19 @@
+# Android 基础之开机自动运行
+- 2016-03-22 10:24:49
+- Android
+- android,
+
+<!--markdown-->有很多应用程序会在开机的时候自动运行，实现的关键主要在 **Intent.ACTION_BOOT_COMPLETED** 的广播。系统在启动完成的时候，会在全世界广播这个消息，主要你的应用注册了这个消息的接收，就会获取到这个广播消息，接收到这个广播消息后，就可以处理你的业务逻辑。
+
+ - 继承 BroadcastReceiver ，实现 onReceive(Context context, Intent intent) 方法，在方法里处理你的业务逻辑
+
+ - 在 AndroidManifest 里注册 Reciver
+    <android:name="yourpackage.YourBroadcastReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <intent-filter>
+    </receiver>
+
+ - 注册权限 <uses-permission android:name=”android.permission.RECEIVE_BOOT_COMPLETED” /> 
+
+ - 注意，Android 留给 BroadcastReceiver 的生命周期很短，在接收到广播后要尽快处理完业务逻辑，不要在 onReceive() 方法里做一些耗时的操作。当然，最常见的就是在 onReceive() 发送一个 Intent ，把要做的事情交给 Service 去处理。

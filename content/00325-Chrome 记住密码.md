@@ -1,0 +1,6 @@
+# Chrome 记住密码
+- 2013-11-15 02:30:37
+- 
+- 密码,chrome,
+
+<div>注册的帐号多了，经常会忘记密码，还有用户名。很不爽的是，这种网站要求的不一样，有的要用户名，有的要邮箱，有的密码还有数字，字符，大小写。帐号密码多了，经常会忘了。但是Chrome一直帮你记着呢。当然是你让它记住密码的话。</div><div><br /></div><div>找回忘记的密码。</div><div>（1）在Chrome的地址栏输入chrome://chrome/settings/passwords 然后找到网站，可以查看你的用户名和密码。</div><div><br /></div><div>（2）还有一招，在输入用户名密码的网页，如果Chrome帮你记住密码了，你能看见****星号，F12，打开开发者调试模式，找到密码框对于的HMTL标签，&lt;input type="password"&gt;&lt;/input&gt;，把password改成其他的，比如text。你的密码就可以看见了。</div>

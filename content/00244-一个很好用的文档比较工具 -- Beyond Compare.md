@@ -1,0 +1,9 @@
+# 一个很好用的文档比较工具 -- Beyond Compare
+- 2013-08-22 02:59:50
+- 
+- 工具,文档,比较,
+
+<div>分享一个很好用的文档比较工具，Beyond Compare ， 官网地址：<a href="http://www.scootersoftware.com/">http://www.scootersoftware.com/</a>&nbsp;， 支持windows和linux，Pricing starts at $30 for a standard, single user, single platform license. &nbsp;这个软件还是比较贵的，30天试用，偶尔用一些而已。</div><div><br /></div>Beyond Compare is a utility for comparing files and folders.&nbsp; It can help you 
+find and reconcile differences in source code, folders, images and data, even if 
+your files are contained in zip archives or on FTP sites.&nbsp; It can synchronize 
+your folders, and validate your copies.<div><br /></div><div><br /></div>

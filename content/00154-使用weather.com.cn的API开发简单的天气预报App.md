@@ -1,0 +1,49 @@
+# 使用weather.com.cn的API开发简单的天气预报App
+- 2015-03-06 09:43:43
+- 默认分类
+- android,api,天气预报,weather,应用,
+
+<!--markdown-->前段时间买了个Google Nexus 7 ，好好的得瑟一下，装了很多应用。不过越装越不爽，很多应用老是弹一些提示啥的，烦都烦死掉了。装个墨迹天气，好家伙，好几个M，简直要逆天啊，乱七八糟的功能一大堆。后来在微博上关注了一下墨迹天气，吐槽的人可不少，有人说老推送消息，有人说安装包大，有人说更新频繁。
+
+
+<!--more-->
+
+
+作为一个开发者，洁癖必须是有的，看着一个天气预报的应用里，放了那么多乱七八糟的东西，心里特别不爽，于是乎，自己动手来一个。 很久很久以前，我也做过一个，那个用的是Google的API，当时自己测试感觉，很不稳定，而且貌似据说是已经不能用了。于是到处找啊找，找了一个我认为比较靠谱的源。www.weather.com.cn .打开网页看一下，感觉还算靠谱。
+
+下面是几个API。直接HTTP请求，response是一个json字符串，自己解析一下很简单的。
+
+## 今天的天气：
+
+### request : 
+
+    http://www.weather.com.cn/data/cityinfo/101010100.html
+
+### response : 
+
+    {"weatherinfo" : {"city" : "北京" , "cityid" : "101010100" , "temp1" : "12℃" , "temp2" : "-1℃" , "weather"  : "晴" , "img1" : "d0.gif" , "img2" : "n0.gif" , "ptime" : "08:00"}}
+
+## 当前的天气：
+
+### request : 
+
+    http://www.weather.com.cn/data/sk/101010100.html
+
+### resonpse
+
+    {"weatherinfo":{"city":"北京","cityid":"101010100","temp":"9","WD":"西南风","WS":"2级","SD":"45%","WSE":"2","time":"10:40","isRadar":"1","Radar":"JC_RADAR_AZ9010_JB"}}
+
+## 未来几天的天气：
+
+### request
+
+    http://m.weather.com.cn/data/101010100.html
+
+### response
+
+
+    {"weatherinfo" : {"city" : "北京" , "city_en" : "beijing" , "date_y" : "2012年11月6日" , "date":"" , "week":"星期二" , "fchh":"08" , "cityid":"101010100" , "temp1":"12℃~-1℃" , "temp2":"11℃~-2℃" , "temp3" :"10℃~2℃" , "temp4":"8℃~2℃" , "temp5":"6℃~-2℃" , "temp6" :"7℃~-3℃" , "tempF1":"53.6℉~30.2℉","tempF2":"51.8℉~28.4℉" , "tempF3" : "50℉~35.6℉" , "tempF4":"46.4℉~35.6℉" , "tempF5":"42.8℉~28.4℉" , "tempF6":"44.6℉~26.6℉" , "weather1":"晴" , "weather2":"多云转晴" , "weather3":"晴转多云" , "weather4":"多云转雨夹雪" , "weather5":"小雪转多云" , "weather6":"晴" , "img1":"0" , "img2":"99" , "img3":"1" , "img4":"0" , "img5":"0" , "img6":"1" , "img7":"1" , "img8":"6" , "img9":"14" , "img10":"1" , "img11":"0" , "img12" : "99" , "img_single" :"0" , "img_title1":"晴" , "img_title2":"晴" , "img_title3" : "多云" , "img_title4":"晴" , "img_title5":"晴" , "img_title6":"多云" , "img_title7":"多云" , "img_title8":"雨夹雪" , "img_title9":"小雪" , "img_title10":"多云" , "img_title11":"晴" , "img_title12":"晴" , "img_title_single":"晴" , "wind1":"微风" , "wind2":"微风" , "wind3":"微风" , "wind4":"微风" , "wind5":"微风转北风4-5级" , "wind6":"北风4-5级转微风" , "fx1" : "微风" , "fx2":"微风" , "fl1":"小于3级" , "fl2":"小于3级" , "fl3":"小于3级" , "fl4":"小于3级" , "fl5":"小于3级转4-5级" , "fl6":"4-5级转小于3级" , "index":"凉" , "index_d":"天气凉建议着厚外套加毛衣等春秋服装。体弱者宜着大衣、呢外套。因昼夜温差较大，注意增减衣服。" , "index48":"凉" , "index48_d":"天气凉，建议着厚外套加毛衣等春秋服装。体弱者宜着大衣、呢外套。因昼夜温差较大，注意增减衣服。" , "index_uv":"中等" , "index48_uv":"弱" , "index_xc":"适宜" , "index_tr":"适宜" , "index_co":"较舒适" , "st1":"12" , "st2":"-1" , "st3":"12" , "st4":"0" , "st5":"9" , "st6":"2" , "index_cl":"适宜" , "index_ls":"基本适宜" , "index_ag":"极不易发"}}
+
+其中，101010100是北京的代号。代号可以在网站上扒，比较麻烦。扒这些代码，费了我不少力气。我在网上找的是XML格式的，我给转成了JSON格式的了，然后把整个json文件放android项目里，在App启动的时候，通过读取IO流来初始化，然后在App里，就可以有全国各个城市的选择了。城市代码细分到县级。
+
+咱这天气预报啥亮点也没有，就是省流量，省电，不吃内存，不偷你个人信息。搜一下简单天气，应该能找到，简单好用。

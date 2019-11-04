@@ -1,0 +1,69 @@
+# Android 获取唯一设备标识的几种方案
+- 2018-04-17 09:57:36
+- Android
+- Android,设备标识
+- Android获取设备号,Android设备标识,Android获取唯一标识
+
+在项目中，获取设备的惟一标识是一个很常见的需求，比较早的一种方式是调用 TelephonyManager.getDeviceId() 方法来获取 Device Id。但是这种方式还是存在一些问题。首先它是需要权限的，所有很多时候，你可能会获取不到 device id。特别是在 Android 6.0 后，在很大国产的 ROM 里，都可以在系统设置里，修改相关的权限，来禁止应用程序获取 device id。
+
+另外还有一个安全问题，在有权限的情况下，这个 device id 是一直不变的。很可能会带来一些安全问题。比如用户把手机给别人了，别人获取到的 device id 和之前的是同一个，这样可能会带来一些安全隐患。
+
+后来，Android 新增了一个 ANDROID_ID 的方式，在设备第一次启动的时候会生成一个 ANDROID_ID，并且在恢复出厂设置后，这个 ANDROID_ID 会再次变更。这样只要一个用户把手机给别人前进行恢复出厂设置，就可以解决安全问题了。但是据说是很多厂商会统一给一个固定的值，导致很大用户会有相同的 ID。所以这个方案也不是很实用。
+
+翻看了 stackoverflow 上的一些答案，最后找到了这么一篇文章，<https://android-developers.googleblog.com/2011/03/identifying-app-installations.html>，感觉还是比较靠谱的。它的方案是在应用启动的时候，通过 UUID 生成一个 ID，并且写到文件中，下次每次都读取的这个 ID。缺点就是卸载或清除应用程序数据后，会重新生成一个新的。但这种情况下，一般也是需要用户重新登录的，重新绑定 device id。所以这种方案也是比较靠谱的。
+
+    public class Installation {
+        private static String sID = null;
+        private static final String INSTALLATION = "INSTALLATION";
+    
+        public synchronized static String id(Context context) {
+            if (sID == null) {
+                File installation = new File(context.getFilesDir(), INSTALLATION);
+                try {
+                    if (!installation.exists())
+                        writeInstallationFile(installation);
+                    sID = readInstallationFile(installation);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return sID;
+        }
+    
+        private static String readInstallationFile(File installation) throws IOException {
+            RandomAccessFile f = new RandomAccessFile(installation, "r");
+            byte[] bytes = new byte[(int) f.length()];
+            f.readFully(bytes);
+            f.close();
+            return new String(bytes);
+        }
+
+        private static void writeInstallationFile(File installation) throws IOException {
+            FileOutputStream out = new FileOutputStream(installation);
+            String id = UUID.randomUUID().toString();
+            out.write(id.getBytes());
+            out.close();
+        }
+    }
+
+### Identifying Devices
+TelephonyManager.getDeviceId() 是获取设备号比较常见的方案，当设置是一个手机的时候，会返回 IMEI, MEID, 或者 ESN。
+
+以下几种情况是有问题的，
+
+* 非手机的设备：现在市面上还是有一些只支持 wifi 的设备的，比如各种 pad。他们没有通信的硬件模块，获取不到对应的设备号。
+* Persistence: On devices which do have this, it persists across device data wipes and factory resets. It’s not clear at all if, in this situation, your app should regard this as the same device.
+* 安全问题；这种方式需要申请 READ_PHONE_STATE 权限。
+* 一些 ROM 的bug，或者故意的，返回固定的值，或者非法的值。
+
+### Mac 地址
+
+Mac 地址是惟一的，但是这种方案并不被推荐，特别是 wifi 关闭的情况下，你很可能会拿不到 MAC 地址。
+
+### 序列号
+
+从 Android 2.3 (“Gingerbread”) 开始，可以通过 android.os.Build.SERIAL 获取一个序列号，对于没有通话功能的设备，它会返回一个惟一的设备标识，有通话功能的设备也可以。
+
+### ANDROID_ID
+
+ANDROID_ID 在设备第一次启动的时候生成，并且在恢复出厂设置后重新生成。但是它有可能在不同的设备上返回相同的 ANDROID_ID ，虽然可能是小概率事件。
