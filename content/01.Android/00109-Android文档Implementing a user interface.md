@@ -1,0 +1,20 @@
+# Android文档Implementing a user interface
+- 2015-03-06 09:01:19
+- Android
+- activity,翻译,中文,英文,官方文档,
+
+<!--markdown-->【由于Android的官方文档实在太多了，而且我的时间、精力、水平太有限了，所以就这样子偷懒吧。其实一般的技术文档也挺明白的，慢慢看应该能看明白，我这四级没过的在翻译软件的帮助下，基本上也没有什么太大的障碍。所以，加油。我觉得重点的东西加粗加亮显示了。】
+
+
+<!--more-->
+
+
+## Implementing a user interface
+
+The user interface for an activity is provided（提供） by a hierarchy（层次） of views—objects derived（来源于） from the View class. Each view controls（控制） a particular（特别的） rectangular（矩形） space within the activity's window and can respond（响应） to user interaction（交互）. For example, a view might be a button that initiates（启动） an action when the user touches it.
+
+Android provides a number of ready-made（现成的） views that you can use to design（设计） and organize（组织） your layout. "Widgets" are views that provide a visual（视觉的） (and interactive（交互的）) elements（元素） for the screen, such as a button, text field, checkbox, or just an image. "Layouts"（布局） are views derived（来源于） from ViewGroup that provide a unique（唯一的） layout model for its child views, such as a linear layout, a grid layout, or relative layout. You can also subclass the View and ViewGroup classes (or existing subclasses) to create your own widgets and layouts and apply them to your activity layout.
+
+The most common（普通的） way to define a layout using views is with an XML layout file saved in your application resources. This way, you can maintain（维护） the design of your user interface separately（分离的） from the source code that defines the activity's behavior（行为）. You can set the layout as the UI for your activity with setContentView(), passing the resource ID for the layout. However, you can also create new Views in your activity code and build a view hierarchy（层次） by inserting new Views into a ViewGroup, then use that layout by passing the root ViewGroup to setContentView().
+
+For information about creating a user interface, see the User Interface documentation（文档）.

@@ -1,0 +1,56 @@
+# Creating an Activity创建一个Activity
+- 2015-03-10 11:15:27
+- Android
+- android,activity,翻译,中文,英文,官方文档,
+
+<!--markdown-->【Binkery友情提示，翻译纯属个人行为，本人英语四级没过，参考需谨慎！！！】
+
+> To create an activity, you must create a subclass of Activity (or an existing subclass of it).
+
+创建一个activity，必须创建一个Activity的子类（或者一个已经存在的Activity的子类）。总之，这个类 肯定是Activity的子类。
+
+> In your subclass, you need to implement callback methods that the system calls when the activity transitions between various states of its lifecycle, such as when the activity is being created, stopped, resumed, or destroyed.  
+
+在你的子类里，你需要实现回调方法，当activity在它的生命周期的不同(various)状态之间转换 (transition)的时候，系统会调用这些回调方法,比如activity被创建，停止，恢复或者销毁。
+
+> The two most important callback methods are:
+有两个很重要的回调方法
+
+## onCreate()
+
+> You must implement this method. The system calls this when creating your activity.
+
+你必须实现这个方法，系统在创建你的activity的时候调用这个方法。
+
+> Within your implementation, you should initialize the essential components of your activity.
+
+在你实现的方法内，你可以初始化这个activity的主要(essential)的控件(component)。
+
+> Most importantly, this is where you must call setContentView() to define the layout for the activity's user interface.
+
+最重要的，在这个方法里，你需要调用setContentView()来定义(define)这个activity的用户交互界面的布局。
+
+## onPause()
+
+> The system calls this method as the first indication that the user is leaving your activity (though it does not always mean the activity is being destroyed).
+
+系统会首先调用这个方法来表示用户正在离开你的activity(虽然它并不总是意味着这个activity正在被销毁 )
+
+> This is usually where you should commit any changes that should be persisted beyond the current user session (because the user might not come back).
+
+在这里，你可以提交一些改变，这些改变可以一直被持续着，超出了当前的用户会话（因为用户可能不会再回来）
+
+> There are several other lifecycle callback methods that you should use in order to provide a fluid user experience between activities and handle unexpected interruptions that cause your activity to be stopped and even destroyed. 
+
+还有一些其他的生命周期的回调方法，你可以使用它们在activity之间来提供一个流畅(fluid)的用户体验 (user experience)和处理一些意外(unexpected)的中断(interruptions)，这些中断可能导致你的activity 被停止甚至销毁。
+
+> All of the lifecycle callback methods are discussed later, in the section about Managing the Activity Lifecycle.
+
+所有的生命周期的回调方法在后面的Activity的生命周期的章节里将被讨论(discussed)。
+
+【[返回总目录][1]】
+【[返回Activity][2]】
+
+
+  [1]: http://www.binkery.com/archives/100.html
+  [2]: http://www.binkery.com/archives/101.html

@@ -1,0 +1,156 @@
+# Android 基础知识之权限大全
+- 2016-03-22 02:43:40
+- 
+- 
+
+<!--markdown--># Android  基础知识之权限大全
+
+Android 作为一个操作系统，权限管理是必须要的。Android 为运行在该系统上的软件提供各种对设备的访问权限，在 Android 应用开发的过程中，开发者需要根据需求，向系统申请必要的权限，才能保证应用的正常运行和使用。当然，现在开发者根本不会考虑什么是需要的权限，直接有啥权限就申请啥权限，先申请再说，甭管是啥软件，打电话，发短信，获取通讯录啥的都是家常便饭了。Android 在权限这一块还是有很大改进的空间的。
+
+<!--more-->
+
+ - ACCESS\_CHECKIN\_PROPERTIES 读取或写入登记check-in数据库属性表的权限
+ - ACCESS\_COARSE\_LOCATION 获取粗略的定位
+ - ACCESS\_FINE\_LOCATION	获取精确的定位
+ - ACCESS\_LOCATION\_EXTRA_COMMANDS 允许程序访问额外的定位提供者指令
+ - ACCESS\_MOCK\_LOCATION	获取模拟定位信息，一般用于帮助开发者调试应用
+ - ACCESS\_NETWORK\_STATE	获取网络信息状态，如当前的网络连接是否有效
+ - ACCESS\_SURFACE\_FLINGER Android平台上底层的图形显示支持，一般用于游戏或照相机预览界面和底层模式的屏幕截图
+ - ACCESS\_WIFI\_STATE 获取当前WiFi接入的状态以及WLAN热点的信息
+ - ACCOUNT\_MANAGER 获取账户验证信息，主要为GMail账户信息，只有系统级进程才能访问的权限
+ - ADD\_VOICEMAIL 允许应用向系统添加语音邮箱 API 14
+ - AUTHENTICATE\_ACCOUNTS 允许一个程序通过账户验证方式访问账户管理 AccountManager 相关信息
+ - BATTERY\_STATS 获取电池电量统计信息
+ - BIND\_ACCESSIBILITY\_SERVICE	Must be required by an AccessibilityService, to ensure that only the system can bind to it.
+ - BIND\_APPWIDGET	Allows an application to tell the AppWidget service which application can access AppWidget's data.
+ - BIND\_DEVICE\_ADMIN	Must be required by device administration receiver, to ensure that only the system can interact with it.
+ - BIND\_INPUT\_METHOD	Must be required by an InputMethodService, to ensure that only the system can bind to it.
+ - BIND\_NFC\_SERVICE	Must be required by a HostApduService or OffHostApduService to ensure that only the system can bind to it.
+ - BIND\_NOTIFICATION\_LISTENER\_SERVICE	Must be required by an NotificationListenerService, to ensure that only the system can bind to it.
+ - BIND\_PRINT\_SERVICE	Must be required by a PrintService, to ensure that only the system can bind to it.
+ - BIND\_REMOTEVIEWS	Must be required by a RemoteViewsService, to ensure that only the system can bind to it.
+ - BIND\_TEXT\_SERVICE	Must be required by a TextService (e.g.
+ - BIND\_VPN\_SERVICE	Must be required by a VpnService, to ensure that only the system can bind to it.
+ - BIND\_WALLPAPER	Must be required by a WallpaperService, to ensure that only the system can bind to it.
+ - BLUETOOTH 允许程序连接配对过的蓝牙设备
+ - BLUETOOTH\_ADMIN 允许程序进行发现和配对新的蓝牙设备
+ - BLUETOOTH\_PRIVILEGED	Allows applications to pair bluetooth devices without user interaction.
+ - BRICK	Required to be able to disable the device (very dangerous!).
+ - BROADCAST\_PACKAGE_REMOVED	Allows an application to broadcast a notification that an application package has been removed.Not for use by third-party applications.
+ - BROADCAST\_SMS	Allows an application to broadcast an SMS receipt notification.
+ - BROADCAST\_STICKY	Allows an application to broadcast sticky intents.
+ - BROADCAST\_WAP\_PUSH	Allows an application to broadcast a WAP PUSH receipt notification.
+ - CALL\_PHONE	Allows an application to initiate a phone call without going through the Dialer user interface for the user to confirm the call being placed.
+ - CALL\_PRIVILEGED	Allows an application to call any phone number, including emergency numbers, without going through the Dialer user interface for the user to confirm the call being placed.
+ - CAMERA	Required to be able to access the camera device.
+ - CAPTURE\_AUDIO\_OUTPUT	Allows an application to capture audio output.
+ - CAPTURE\_SECURE\_VIDEO\_OUTPUT	Allows an application to capture secure video output.
+ - CAPTURE\_VIDEO\_OUTPUT	Allows an application to capture video output.
+ - CHANGE\_COMPONENT_ENABLED_STATE	Allows an application to change whether an application component (other than its own) is enabled or not.
+ - CHANGE_CONFIGURATION	Allows an application to modify the current configuration, such as locale.
+ - CHANGE_NETWORK_STATE	Allows applications to change network connectivity state
+ - CHANGE\_WIFI\_MULTICAST\_STATE	Allows applications to enter Wi-Fi Multicast mode
+ - CHANGE\_WIFI\_STATE	Allows applications to change Wi-Fi connectivity state
+ - CLEAR\_APP\_CACHE	Allows an application to clear the caches of all installed applications on the device.
+ - CLEAR\_APP\_USER\_DATA	Allows an application to clear user data.
+ - CONTROL\_LOCATION\_UPDATES	Allows enabling/disabling location update notifications from the radio.
+ - DELETE\_CACHE\_FILES	Allows an application to delete cache files.
+ - DELETE\_PACKAGES	Allows an application to delete packages.
+ - DEVICE\_POWER	Allows low-level access to power management.
+ - DIAGNOSTIC	Allows applications to RW to diagnostic resources.
+ - DISABLE\_KEYGUARD	Allows applications to disable the keyguard
+ - DUMP	Allows an application to retrieve state dump information from system services.
+ - EXPAND\_STATUS\_BAR	Allows an application to expand or collapse the status bar.
+ - FACTORY\_TEST	Run as a manufacturer test application, running as the root user.
+ - FLASHLIGHT	Allows access to the flashlight
+ - FORCE\_BACK	Allows an application to force a BACK operation on whatever is the top activity.
+ - GET\_ACCOUNTS	Allows access to the list of accounts in the Accounts Service
+ - GET\_PACKAGE\_SIZE	Allows an application to find out the space used by any package.
+ - GET\_TASKS	Allows an application to get information about the currently or recently running tasks.
+ - GET\_TOP\_ACTIVITY\_INFO	Allows an application to retrieve private information about the current top activity, such as any assist context it can provide.
+ - GLOBAL\_SEARCH	This permission can be used on content providers to allow the global search system to access their data.
+ - HARDWARE\_TEST	Allows access to hardware peripherals.
+ - INJECT\_EVENTS	Allows an application to inject user events (keys, touch, trackball) into the event stream and deliver them to ANY window.
+ - INSTALL\_LOCATION_PROVIDER	Allows an application to install a location provider into the Location Manager.
+ - INSTALL\_PACKAGES	Allows an application to install packages.
+ - INSTALL\_SHORTCUT	Allows an application to install a shortcut in Launcher
+ - INTERNAL\_SYSTEM\_WINDOW	Allows an application to open windows that are for use by parts of the system user interface.
+ - INTERNET	Allows applications to open network sockets.
+ - KILL\_BACKGROUND_PROCESSES	Allows an application to call killBackgroundProcesses(String).
+ - LOCATION\_HARDWARE	Allows an application to use location features in hardware, such as the geofencing api.
+ - MANAGE\_ACCOUNTS	Allows an application to manage the list of accounts in the AccountManager
+ - MANAGE\_APP_TOKENS	Allows an application to manage (create, destroy, Z-order) application tokens in the window manager.
+ - MANAGE\_DOCUMENTS	Allows an application to manage access to documents, usually as part of a document picker.
+ - MASTER\_CLEAR	Not for use by third-party applications.
+ - MEDIA\_CONTENT\_CONTROL	Allows an application to know what content is playing and control its playback.
+ - MODIFY\_AUDIO\_SETTINGS	Allows an application to modify global audio settings
+ - MODIFY\_PHONE\_STATE	Allows modification of the telephony state - power on, mmi, etc.
+ - MOUNT\_FORMAT\_FILESYSTEMS	Allows formatting file systems for removable storage.
+ - MOUNT\_UNMOUNT\_FILESYSTEMS	Allows mounting and unmounting file systems for removable storage.
+ - NFC	Allows applications to perform I/O operations over NFC
+ - PERSISTENT\_ACTIVITY	This constant was deprecated in API level 9. This functionality will be removed in the future; please do not use. Allow an application to make its activities persistent.
+ - PROCESS\_OUTGOING\_CALLS	Allows an application to monitor, modify, or abort outgoing calls.
+ - READ\_CALENDAR 读取用户日历数据 Allows an application to read the user's calendar data.
+ - READ\_CALL\_LOG 读取通话记录 Allows an application to read the user's call log.
+ - READ\_CONTACTS 读取通讯录 Allows an application to read the user's contacts data.
+ - READ\_EXTERNAL\_STORAGE 读取外置存储 Allows an application to read from external storage.
+ - READ\_FRAME\_BUFFER	Allows an application to take screen shots and more generally get access to the frame buffer data.
+ - READ\_HISTORY\_BOOKMARKS	Allows an application to read (but not write) the user's browsing history and bookmarks.
+ - READ\_INPUT\_STATE	This constant was deprecated in API level 16. The API that used this permission has been removed.
+ - READ\_LOGS	Allows an application to read the low-level system log files.
+ - READ\_PHONE\_STATE	Allows read only access to phone state.
+ - READ\_PROFILE	Allows an application to read the user's personal profile data.
+ - READ\_SMS 允许应用读取短信。Allows an application to read SMS messages.
+ - READ\_SOCIAL\_STREAM	Allows an application to read from the user's social stream.
+ - READ_SYNC_SETTINGS	Allows applications to read the sync settings
+ - READ_SYNC_STATS	Allows applications to read the sync stats
+ - READ_USER_DICTIONARY	Allows an application to read the user dictionary.
+ - REBOOT 重启 Required to be able to reboot the device.
+ - RECEIVE_BOOT_COMPLETED 允许应用接收到系统启动完成的系统广播 Allows an application to receive the ACTION_BOOT_COMPLETED that is broadcast after the system finishes booting.
+ - RECEIVE_MMS	Allows an application to monitor incoming MMS messages, to record or perform processing on them.
+ - RECEIVE_SMS	Allows an application to monitor incoming SMS messages, to record or perform processing on them.
+ - RECEIVE_WAP_PUSH	Allows an application to monitor incoming WAP push messages.
+ - RECORD_AUDIO	Allows an application to record audio
+ - REORDER_TASKS	Allows an application to change the Z-order of tasks
+ - RESTART_PACKAGES	This constant was deprecated in API level 8. The restartPackage(String) API is no longer supported.
+ - SEND_RESPOND_VIA_MESSAGE	Allows an application (Phone) to send a request to other applications to handle the respond-via-message action during incoming calls.
+ - SEND_SMS 发送短信 Allows an application to send SMS messages.
+ - SET_ACTIVITY_WATCHER	Allows an application to watch and control how activities are started globally in the system.
+ - SET_ALARM	Allows an application to broadcast an Intent to set an alarm for the user.
+ - SET_ALWAYS_FINISH	Allows an application to control whether activities are immediately finished when put in the background.
+ - SET_ANIMATION_SCALE	Modify the global animation scaling factor.
+ - SET_DEBUG_APP	Configure an application for debugging.
+ - SET_ORIENTATION	Allows low-level access to setting the orientation (actually rotation) of the screen.
+ - SET_POINTER_SPEED	Allows low-level access to setting the pointer speed.
+ - SET_PREFERRED_APPLICATIONS	This constant was deprecated in API level 7. No longer useful, see addPackageToPreferred(String) for details.
+ - SET_PROCESS_LIMIT	Allows an application to set the maximum number of (not needed) application processes that can be running.
+ - SET_TIME 修改系统时间 Allows applications to set the system time.
+ - SET_TIME_ZONE 修改系统时区 Allows applications to set the system time zone
+ - SET_WALLPAPER	Allows applications to set the wallpaper
+ - SET_WALLPAPER_HINTS	Allows applications to set the wallpaper hints
+ - SIGNAL_PERSISTENT_PROCESSES	Allow an application to request that a signal be sent to all persistent processes.
+ - STATUS_BAR	Allows an application to open, close, or disable the status bar and its icons.
+ - SUBSCRIBED_FEEDS_READ	Allows an application to allow access the subscribed feeds ContentProvider.
+ - SUBSCRIBED_FEEDS_WRITE	
+ - SYSTEM_ALERT_WINDOW	Allows an application to open windows using the type TYPE_SYSTEM_ALERT, shown on top of all other applications.
+ - TRANSMIT\_IR	Allows using the device's IR transmitter, if available
+ - UNINSTALL_SHORTCUT	Allows an application to uninstall a shortcut in Launcher
+ - UPDATE_DEVICE_STATS	Allows an application to update device statistics.
+ - USE\_CREDENTIALS	Allows an application to request authtokens from the AccountManager
+ - USE\_SIP	Allows an application to use SIP service
+ - VIBRATE	Allows access to the vibrator
+ - WAKE\_LOCK	Allows using PowerManager WakeLocks to keep processor from sleeping or screen from dimming
+ - WRITE\_APN_SETTINGS	Allows applications to write the apn settings.
+ - WRITE\_CALENDAR	Allows an application to write (but not read) the user's calendar data.
+ - WRITE\_CALL_LOG	Allows an application to write (but not read) the user's contacts data.
+ - WRITE\_CONTACTS	Allows an application to write (but not read) the user's contacts data.
+ - WRITE\_EXTERNAL_STORAGE	Allows an application to write to external storage.
+ - WRITE\_GSERVICES	Allows an application to modify the Google service map.
+ - WRITE\_HISTORY_BOOKMARKS	Allows an application to write (but not read) the user's browsing history and bookmarks.
+ - WRITE\_PROFILE	Allows an application to write (but not read) the user's personal profile data.
+ - WRITE\_SECURE_SETTINGS	Allows an application to read or write the secure system settings.
+ - WRITE\_SETTINGS	Allows an application to read or write the system settings.
+ - WRITE\_SMS	Allows an application to write SMS messages.
+ - WRITE\_SOCIAL_STREAM	Allows an application to write (but not read) the user's social stream data.
+ - WRITE\_SYNC_SETTINGS	Allows applications to write the sync settings
+ - WRITE\_USER_DICTIONARY	Allows an application to write to the user dictionary.
