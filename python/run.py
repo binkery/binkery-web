@@ -151,16 +151,20 @@ def dispatch_path(parent,file):
     node = {}
     if file == '.' :
         node['source'] = parent['source']
-        node['target'] = parent['target'] + '/index.html'
-        node['link'] = parent['link'] + 'index.html'
+        node['target'] = app['target'] + 'index.html'
+        node['link'] = app['link'] + 'index.html'
     else :
         node['source'] = os.path.join(parent['source'],file)
         if os.path.isdir(node['source']):
-            node['target'] = os.path.join(parent['target'][:-10],file[3:] + '/index.html')
-            node['link'] = parent['link'][:-10] + file[3:] + '/index.html'
+            #node['target'] = os.path.join(app['target'][:-10],file[3:] + '/index.html')
+            node['target'] = app['target'] + 'category/' + file[3:8] + '/index.html'
+            #node['link'] = parent['link'][:-10] + file[3:] + '/index.html'
+            node['link'] = app['link'] + 'category/' + file[3:8] + '/index.html'
         else:
-            node['target'] = os.path.join(parent['target'][:-10],file[3:-3] + '.html')
-            node['link'] = parent['link'][:-10] + file[3:-3] + '.html'
+            #node['target'] = os.path.join(parent['target'][:-10],file[3:-3] + '.html')
+            node['target'] = app['target'] + 'archives/' + file[3:8] + '.html'
+            #node['link'] = parent['link'][:-10] + file[3:-3] + '.html'
+            node['link'] = app['link'] + 'archives/' + file[3:8] + '.html'
     print("target = " + node['target'] + ',' + parent['target'] + ', -- file = ' + file)
     node['title'] = get_title_from_source_file(node['source'])
     node['content'] = get_content_from_source_file(node['source'])
@@ -174,9 +178,9 @@ def dispatch_path(parent,file):
             child_file = os.path.join(node['source'],f)
             child_title = get_title_from_source_file(child_file)
             if os.path.isdir(child_file):
-                child_link = node['link'][:-10] + f[3:] + '/index.html'
+                child_link = app['link'] + 'category/' + f[3:8] + '/index.html'
             else:
-                child_link = node['link'][:-10] + f[3:-3] + '.html' 
+                child_link = app['link'] + 'archives/' + f[3:8] + '.html' 
             node['content'] += '- [' + child_title + '](' + child_link + ')\n'
     write_article_to_file(node)
 
@@ -207,11 +211,16 @@ site['to_space'] = date_to(2020,12,11)
 site['app_name'] = 'iDaily'
 site['app_link'] = 'http://beta.binkery.com'
 
+app = {
+    'target':'../html',
+    'link':'http://beta.binkery.com/'
+}
+
 
 root = {
     'source':'../content',
     'link':'http://beta.binkery.com/',
-    'target':'../html',
+    'target':'../html/',
     'content':''
 }
 
