@@ -1,0 +1,15 @@
+# 介绍一个挺好的网站 pixelstech.net
+- 2013-09-17 11:02:24
+- 
+- 网站,英文,pixelstech,英语,科技,技术,
+
+<p>下面是这个网站注册登录界面上的文字说明，也是这个网站的关于 about 内容。这是个英文网站，在上面有很多很好的文章，觉得可以多看看，顺便把英文也学习。如果什么时候，我能不用查词典轻松阅读的话，那就是一个里程碑了。坚持每天阅读，然后copy到网站上来。伪原创，也算自己学习英语的一个方法吧。</p>
+
+<p>Here we share with you latest technology news, excellent（杰出的，卓越的） technical articles, useful software and study materials（材料）.</p>
+<p>这里有最新的科技的新闻，杰出的科技的文章，有用的软件和学习材料</p>
+<p>You can publish your own content whenever you have any thoughts on technology or want to share your tips（小费？尖端？应该是小费。） with us so that more people can benefit （利益，好处，救济金）. All you submmited articles will have the chance to be published on our homepage and read by more people.</p>
+<p>你可以在任何时候发布你自己的跟科技有关的想法，或者分享 tips 给我们（也就是这个网站），这样可以让更多的人受益。tips 应该是翻译成小费的意思。就是说你可以捐赠这个网站。</p>
+<p>You can also join us on discussion some hot topics on technology. You can freely share your thoughts on any topics which you are interested in.</p>
+<p>你也可以加入我们（这个网站）参与一些热门科技文章的讨论。你可以在任何你感兴趣的文章上，自由地分享你的想法。</p>
+<p>Moreover, if you find any article useful to you, you can save it as PDF to your local drive for later reference（参考）. Just a simple click, you can get what you want.</p>
+<p>而且，如果你发现任何你有用的文章，你可以把它们保存成PDF格式的文件，保存到你本地的设备上，以便以后参考。只需要简单的点击，你就能获得你想要的。首先保证你注册登录后，你就可以做很多事情。可以分享到twitter，facebook，Google+，甚至我发现了新浪微博。挺好的吧。确实挺好。</p>
