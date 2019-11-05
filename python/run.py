@@ -90,19 +90,8 @@ def write_article_to_file(article):
 </header>
 <nav>
 	<ul>
-        <li><a href="/">主页</a></li>
-        <li><a href="/Android/index.html">Android</a></li>
-        <li><a href="/Java/index.html">Java</a></li>
-        <li><a href="/Kotlin/index.html">Kotlin</a></li>
-        <li><a href="/Python/index.html">Python</a></li>
-        <li><a href="/FrontEnd/index.html">前端</a></li>
-        <li><a href="/OperatingSystems/index.html">操作系统</a></li>
-        <li><a href="/DataStructuresAndAlgorithms/index.html">数据结构与算法</a></li>
-        <li><a href="/ComputerNetwork/index.html">计算机网络</a></li>
-        <li><a href="/WebsiteSEO/index.html">网站建设</a></li>
-        <li><a href="/Essay/index.html">杂感随笔</a></li>
-        
-	</ul>
+        {site[nav]}
+    </ul>
 </nav>
 
 <div id="div_article">
@@ -198,6 +187,20 @@ def dispatch_path(parent,file):
             # 最后需要递归一下
             dispatch_path(node,f)
           
+def get_nav():
+    nav = '<li><a href="/">主页</a></li>'
+    files = sorted(os.listdir(root['source']),reverse=False)
+    for f in files:
+        if f == 'README.md':
+            continue
+        path = os.path.join(root['source'],f)
+        title = get_title_from_source_file(path)
+        if os.path.isdir(path):
+            nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
+        else :
+            nav += '<li><a href="{link}">{title}</a></li>\n'.format(app['link'] + 'archives/' + toInt(f[3:10]) + '.html',title=title)
+    return nav
+    
 def date_from(y,m,d):
     d1 = datetime.date.today()
     d2 = datetime.date(y,m,d)
@@ -229,5 +232,5 @@ root = {
     'target':'../html/',
     'content':''
 }
-
+site['nav'] = get_nav()
 dispatch_path(root,'.')
