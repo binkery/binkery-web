@@ -1,0 +1,32 @@
+# startActivityForResult
+- 2019-05-05 13:06:24
+- Android
+- android,activity,resultcode,
+
+<!--markdown--># startActivityForResult
+
+一直以来，我认为 Activity 的 result 设计是非常精妙的而且合理的，很多人入门的时候也都了解了 startActivity 和 startActivityForResult，网上也有很多分享，但是这并没有引起一些开发者的思考，Android 的设计必定是有它的用心的，不是简单的说可以这样写代码这么简单，要想想，Android 为啥这样设计，也可以想想，如果不这样设计，会出现哪些解决不了的问题，或者解决不好的问题？
+
+在项目中，发现很多程序员对 startActivityForResult 的用法很不了解，特别是对 requestCode 和 resultCode 分不清。requestCode 和 resultCode 分不清，导致了代码的耦合度相当大，很多人把 requestCode 当 resultCode 使用了。
+
+咱们现在假设 A startActivityForResult B，A 称为发起方，B 称为响应方。那么代码应该满足以下几个要求：
+
+* 响应方不应该关心 requestCode，requestCode 由发起方自己管理。基本上，响应方不关心是谁发起的请求，对待任意一个请求，响应方给的结果应该是一致的。比如咱们在调起系统拍照一样，按照一个规则发送参数和接收参数，系统拍照不可能关心你是从哪发起的。
+
+    也就是说，requestCode 可以是一个常量，但是这个常量的访问范围肯定是在发起方内，响应方不应该有这个 requestCode 的引用。
+
+* 响应方在 setResult 的时候，resultCode 一般只有 RESULT\_OK 和 RESULT\_CANCEL 两种，这两种是特殊意义的，一般情况下，不要随意增加自定义的 result code。
+
+	所以在 onActivityResult 的回调中，一般情况下只需要判断 resultCode
+
+* 在 onActivityResult 中，一般先判断 requestCode，根据 requestCode 交给不同的代码去处理。不要一上来就根据 resultCode == RESULT_CANCEL 就直接 return 了。职责要分清楚，谁发起的请求，谁来接收响应。
+
+* 尽量不要在 Activity 里提供 startActivity 方法给其他 Activity 调用。我看过一些项目，习惯给当前的 Activity 提供一个写好的 start 方法，方便其他人调用。这样的结果是：start 方法越写越多，多到不知道调用哪个了，参数也很多，多到不知道该传些什么了。
+
+这还带来另外一个问题，不仅是 Activity ，Fragment 也可以 startActivity，特别是调用 startActivityForResult 的时候，如果是 Fragment 调用的，Fragment 的 onActivityResult 应该收到回调，这样是符合 Anroid 的设计的初衷的，但是很多 Activity 提供的 start 方法都由一个 Activity 来 startActivityForResult，所以导致在 Fragment startActivityForResult，但是 Fragment 没有收到 onActivityResult 回调。
+
+我的想法是，每个 Activity 不需要对外提供 start 方法，也不应该提供。当如果一个 Activity 在 start 的时候需要很多种不同功能的参数的时候，是考虑重构、拆分这个 Activity 的时候了。 
+
+一般，Activity 一个一个被 start，然后被一个一个推到了栈中，在回退的时候，一个一个的从栈中被推出。当你需要在某个 Activity finish 的时候，直接回到上 N 个 Activity 的时候，当一个 Activity 需要从被它唤起的 Activity 得到一个回答的时候，startActivityForResult 是你应该的选择。
+
+在项目中，看到有人这样写代码，当一个参数需要从一个 Activity 传到下一个 Activity，并且可能还需要继续往下传送的时候，有人就偷懒，把这些参数放在其他类中去管理，并且设计一个单例，看着好像很取巧，但是这往往导致逻辑更多复杂。堆了一堆不好维护的代码。

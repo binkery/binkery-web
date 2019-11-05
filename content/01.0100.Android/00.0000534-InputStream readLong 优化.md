@@ -1,0 +1,76 @@
+# InputStream readLong 优化
+- 2016-05-18 07:07:07
+- Java
+- 代码优化,
+
+<!--markdown-->今天整理现在手头上的项目，发现一个问题，觉得还是很值得记录一下的。
+
+有这么一个工具类，这个类是一个磁盘缓存工具的一工具类，主要负责读和写。关于读，其中有一个方法是 read(InputStream)，每次只读取一个字节，代码如下：
+
+    private static int read(InputStream is) throws IOException {
+        int b = is.read();
+        if (b == -1) {
+            throw new EOFException();
+        }
+        return b;
+    }
+
+其他 readXXX的方法，大多需要会调用这个方法，比如下面的 readLong() 方法：
+
+    static long readLong(InputStream is) throws IOException {
+        long n = 0;
+        n |= ((read(is) & 0xFFL) << 0);
+        n |= ((read(is) & 0xFFL) << 8);
+        n |= ((read(is) & 0xFFL) << 16);
+        n |= ((read(is) & 0xFFL) << 24);
+        n |= ((read(is) & 0xFFL) << 32);
+        n |= ((read(is) & 0xFFL) << 40);
+        n |= ((read(is) & 0xFFL) << 48);
+        n |= ((read(is) & 0xFFL) << 56);
+        return n;
+    }
+
+一般往缓存里存 long 类型的数据是比较少见的，但是通过 trace 发现，readLong() 被调用的次数还是蛮多的，而调用 readLong() 方法的是 readString() 方法。代码如下：
+
+    static String readString(InputStream is) throws IOException {
+        int n = (int) readLong(is);
+        byte[] b = streamToBytes(is, n);
+        return new String(b, "UTF-8");
+    }
+
+这下就都明了了，保存字符串是缓存中比较常见的应用场景，所以这产生了这么一个串行的练级反应，readString() 被调用一次， readLong() 就被调用一次，而 read() 方法就被调用八次。
+
+到目前为止一切看上去都很正常，我先记录一下我某一次抓 trace 抓到的数据。
+
+![QQ图片20160406112159.png][1]
+
+从上面的数据，以及个人的经验，感觉 readLong() 方法是应该有优化的空间的。readLong() 真的有必要调用 8 次 read() 方法吗？我看未必。下面是我修改后的代码：
+
+    static long readLong(InputStream is) throws IOException {
+        byte[] data = new byte[8];
+        int len = is.read(data);
+        if(len != 8){
+            throw new EOFException();
+        }
+        long n = 0;
+        n |= ((data[0] & 0xFFL) << 0);
+        n |= ((data[1] & 0xFFL) << 8);
+        n |= ((data[2] & 0xFFL) << 16);
+        n |= ((data[3] & 0xFFL) << 24);
+        n |= ((data[4] & 0xFFL) << 32);
+        n |= ((data[5] & 0xFFL) << 40);
+        n |= ((data[6] & 0xFFL) << 48);
+        n |= ((data[7] & 0xFFL) << 56);
+        return n;
+    }
+
+我把调用 8 次 read() 方法，一次读一个字节改成了一次读 8 个字节到数组中。下面是修改后的 trace 数据：
+
+![QQ图片20160406112443.png][2]
+
+由上面的数据可以看出，由于修改后，readLong() 方法不再调用 read() 方法了，read() 方法被调用的次数大大的降低了。各个方法在调用次数比上一次高的情况下，CPU 时间占用百分比，CPU 时间以及 CPU 真实时间都下降了。
+
+NOTE：关于 trace 中各个数据表示的意思以及 trace 工具的使用，参考文章 ：[Android 调试工具 Traceview](http://www.binkery.com/archives/480.html)
+
+  [1]: http://www.binkery.com/usr/uploads/2016/04/453298184.png
+  [2]: http://www.binkery.com/usr/uploads/2016/04/4102350695.png
