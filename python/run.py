@@ -212,7 +212,7 @@ site['app_name'] = 'iDaily'
 site['app_link'] = 'http://beta.binkery.com'
 
 app = {
-    'target':'../html',
+    'target':'../html/',
     'link':'http://beta.binkery.com/'
 }
 
