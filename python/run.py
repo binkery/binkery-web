@@ -184,7 +184,7 @@ def dispatch_path(parent,file):
             child_file = os.path.join(node['source'],f)
             child_title = get_title_from_source_file(child_file)
             if os.path.isdir(child_file):
-                child_link = app['link'] + 'category/' + toInt(f) + '/index.html'
+                child_link = app['link'] + 'category/' + toInt(f) + '.html'
             else:
                 child_link = app['link'] + 'archives/' + toInt(f) + '.html' 
             node['content'] += '- [' + child_title + '](' + child_link + ')\n'
