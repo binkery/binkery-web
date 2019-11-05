@@ -58,7 +58,7 @@ def write_article_to_file(article):
     article['description'] = remove_tags(article_content)[:100].replace('\n','')
     #article['keywords'] = ''
     article['content'] = article_content
-    print(local_path)
+    #print(local_path)
     template = '''
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -124,7 +124,7 @@ def write_article_to_file(article):
     write(local_path,template)
     
 def path_to_link(path):
-    print('===== ' + path)
+    #print('===== ' + path)
     if path == '../content/':
        #print('=======')
        return '/index.html'
@@ -171,7 +171,7 @@ def dispatch_path(parent,file):
             node['target'] = app['target'] + 'archives/' + toInt(file[3:10]) + '.html'
             #node['link'] = parent['link'][:-10] + file[3:-3] + '.html'
             node['link'] = app['link'] + 'archives/' + toInt(file[3:10]) + '.html'
-    print("target = " + node['target'] + ',' + parent['target'] + ', -- file = ' + file)
+    #print("target = " + node['target'] + ',' + parent['target'] + ', -- file = ' + file)
     node['title'] = get_title_from_source_file(node['source'])
     node['content'] = get_content_from_source_file(node['source'])
     node['keywords'] = get_key_workds_from_source_file(node['source'])
