@@ -86,11 +86,14 @@ def write_article_to_file(article):
     </script>
 </head>
 <body>
-    <header class="row-fluid">
-        <div class="span8 offset2">
-            <a href="//beta.binkery.com/">Binkery 技术博客</a>
-        </div>
-    </header>
+    <div  class="row-fluid">
+    <div class="span8 offset2">
+        <header>
+            <a href="{app[link]}">{app[name]}</a>
+        </header>
+    </div>
+    </div>
+    
     <div class="row-fluid">
         <div class="span8 offset2">
             <nav>
@@ -115,13 +118,14 @@ def write_article_to_file(article):
         </div>
         
     </div>
-
-
-
-<footer class="row">
-     <p>网站更新时间:{app[last_modify_time]}</p>
-     <p>CopyRight &copy; <a href="//beta.binkery.com/">BETA.binkery.com</a></p>
-</footer>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <footer>
+                 <p>网站更新时间:{app[last_modify_time]}</p>
+                 <p>CopyRight &copy; <a href="{app[link]}">BETA.binkery.com</a></p>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>
 '''.format(article=article,app=app)
@@ -167,16 +171,11 @@ def dispatch_path(parent,file):
     else :
         node['source'] = os.path.join(parent['source'],file)
         if os.path.isdir(node['source']):
-            #node['target'] = os.path.join(app['target'][:-10],file[3:] + '/index.html')
             node['target'] = app['target'] + 'category/' + toInt(file[3:7]) + '.html'
-            #node['link'] = parent['link'][:-10] + file[3:] + '/index.html'
             node['link'] = app['link'] + 'category/' + toInt(file[3:7]) + '.html'
         else:
-            #node['target'] = os.path.join(parent['target'][:-10],file[3:-3] + '.html')
             node['target'] = app['target'] + 'archives/' + toInt(file[3:10]) + '.html'
-            #node['link'] = parent['link'][:-10] + file[3:-3] + '.html'
             node['link'] = app['link'] + 'archives/' + toInt(file[3:10]) + '.html'
-    #print("target = " + node['target'] + ',' + parent['target'] + ', -- file = ' + file)
     node['title'] = get_title_from_source_file(node['source'])
     node['content'] = get_content_from_source_file(node['source'])
     node['keywords'] = get_key_workds_from_source_file(node['source'])
@@ -248,14 +247,7 @@ def date_to(y,m,d):
     d2 = datetime.date(y,m,d)
     return (d2-d1).days
 
-#site = {}
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
-#site['last_modify_time'] = datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S")
-#site['since_setup'] = date_from(2019,1,24)
-#site['to_domain'] = date_to(2028,6,8)
-#site['to_space'] = date_to(2020,12,11)
-#site['app_name'] = 'iDaily'
-#site['app_link'] = 'http://beta.binkery.com'
 
 app = {
     'source':'../content/',
