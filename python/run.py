@@ -68,13 +68,13 @@ def write_article_to_file(article):
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name ="viewport" content ="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#337ab7">
     <title>{article[title]} :: Binkery 技术博客</title>
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
-    <link rel="stylesheet" href="/style.css">
     <script>
     var _hmt = _hmt || [];
         (function() {{
@@ -86,23 +86,39 @@ def write_article_to_file(article):
     </script>
 </head>
 <body>
-<header><p><a href="//beta.binkery.com/">Binkery 技术博客</a></p>
-</header>
-<nav>
-	<ul>
-        {site[nav]}
-    </ul>
-</nav>
+    <header class="row-fluid">
+        <div class="span8 offset2">
+            <a href="//beta.binkery.com/">Binkery 技术博客</a>
+        </div>
+    </header>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <nav>
+	            <ul class="nav nav-pills">
+                    {site[nav]}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="span8">
+                 <article>
+                     {article[content]}
+                     <P> - EOF - </P>
+                     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
+                </article>
+            </div>
+            <div class="span4">
+                <ul>{site[nav]}</ul>
+            </div>
+        </div>
+        
+    </div>
 
-<div id="div_article">
-     <article>
-     {article[content]}
-     <P> - EOF - </P>
-     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
-    </article>
-</div>
 
-<footer>
+
+<footer class="row">
      <p>网站更新时间:{site[last_modify_time]}</p>
      <p>CopyRight &copy; <a href="//beta.binkery.com/">BETA.binkery.com</a></p>
 </footer>
