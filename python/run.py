@@ -95,7 +95,7 @@ def write_article_to_file(article):
         <div class="span8 offset2">
             <nav>
 	            <ul class="nav nav-pills">
-                    {site[nav]}
+                    {app[nav]}
                 </ul>
             </nav>
         </div>
@@ -110,7 +110,7 @@ def write_article_to_file(article):
                 </article>
             </div>
             <div class="span4">
-                <ul>{site[nav]}</ul>
+                <ul>{app[sidebar]}</ul>
             </div>
         </div>
         
@@ -119,12 +119,12 @@ def write_article_to_file(article):
 
 
 <footer class="row">
-     <p>网站更新时间:{site[last_modify_time]}</p>
+     <p>网站更新时间:{app[last_modify_time]}</p>
      <p>CopyRight &copy; <a href="//beta.binkery.com/">BETA.binkery.com</a></p>
 </footer>
 </body>
 </html>
-'''.format(article=article,site=site)
+'''.format(article=article,app=app)
     #print(local_path)
     write(local_path,template)
     
@@ -205,16 +205,37 @@ def dispatch_path(parent,file):
           
 def get_nav():
     nav = '<li><a href="/">主页</a></li>'
-    files = sorted(os.listdir(root['source']),reverse=False)
+    files = sorted(os.listdir(app['source']),reverse=False)
     for f in files:
         if f == 'README.md':
             continue
-        path = os.path.join(root['source'],f)
+        path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
             nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
-        else :
-            nav += '<li><a href="{link}">{title}</a></li>\n'.format(app['link'] + 'archives/' + toInt(f[3:10]) + '.html',title=title)
+    return nav
+    
+def get_sidebar():
+    nav = '<ul>'
+    files = sorted(os.listdir(app['source']),reverse=False)
+    for f in files:
+        if f == 'README.md':
+            continue
+        path = os.path.join(app['source'],f)
+        title = get_title_from_source_file(path)
+        if os.path.isdir(path):
+            nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
+            children = sorted(os.listdir(path),reverse=False)
+            nav += '<ul>'
+            for child in children:
+                if child == 'README.md':
+                    continue
+                child_path = os.path.join(path,child)
+                child_title = get_title_from_source_file(child_path)
+                if os.path.isdir(child_path):
+                    nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(child[3:7]) + '.html',title=child_title)
+            nav += '</ul>'
+    nav += '</ul>'
     return nav
     
 def date_from(y,m,d):
@@ -227,26 +248,29 @@ def date_to(y,m,d):
     d2 = datetime.date(y,m,d)
     return (d2-d1).days
 
-site = {}
+#site = {}
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
-site['last_modify_time'] = datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S")
-site['since_setup'] = date_from(2019,1,24)
-site['to_domain'] = date_to(2028,6,8)
-site['to_space'] = date_to(2020,12,11)
-site['app_name'] = 'iDaily'
-site['app_link'] = 'http://beta.binkery.com'
+#site['last_modify_time'] = datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S")
+#site['since_setup'] = date_from(2019,1,24)
+#site['to_domain'] = date_to(2028,6,8)
+#site['to_space'] = date_to(2020,12,11)
+#site['app_name'] = 'iDaily'
+#site['app_link'] = 'http://beta.binkery.com'
 
 app = {
+    'source':'../content/',
     'target':'../html/',
-    'link':'http://beta.binkery.com/'
+    'link':'http://beta.binkery.com/',
+    'last_modify_time':datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S"),
+    'name':'Binkery技术博客'
 }
-
+app['nav'] = get_nav()
+app['sidebar'] = get_sidebar()
 
 root = {
-    'source':'../content',
-    'link':'http://beta.binkery.com/',
-    'target':'../html/',
+    'source':app['source'],
+    'link':app['link'],
+    'target':app['target'],
     'content':''
 }
-site['nav'] = get_nav()
 dispatch_path(root,'.')
