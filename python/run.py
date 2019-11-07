@@ -115,7 +115,7 @@ def write_article_to_file(article):
             <div class="span4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        目录结构
+                        
                     </div>
                     <div class="panel-body">
                         <ul>{app[sidebar]}</ul>
