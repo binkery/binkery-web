@@ -104,23 +104,17 @@ def write_article_to_file(article):
         <div class="row">
             <div class="col-md-1 col-lg-1 col-xl-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
-                
-                         <article>
-                             {article[content]}
-                             <P> - EOF - </P>
-                             <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
-                        </article>
-                    </div><!-- row content left -->
-
-                    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
-                         <div class="card">
-                            <div class="card-header">目录树</div>
-                            <div class="card-body"><ul>{app[sidebar]}</ul></div>
-                        </div>
-                    </div><!-- row content right -->
-
-                </div>
-            </div>
+                <article>
+                     {article[content]}
+                     <P> - EOF - </P>
+                     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
+                </article>
+            </div><!-- row content left -->
+            <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
+                <div class="card">
+                    <div class="card-header">目录树</div><div class="card-body"><ul>{app[sidebar]}</ul></div>
+                </div><!--card -->
+            </div><!-- row content right -->
         </div><!-- row content -->
 
         <div  class="row mt-5">
@@ -128,8 +122,6 @@ def write_article_to_file(article):
             <footer><p class="text-center">CopyRight &copy; <a href="{app[link]}">BETA.binkery.com</a> ^ Last Build @ {app[last_modify_time]} </p></footer>
             </div>
         </div><!-- row footer -->
-
-
     </div><!-- container-fluid -->
 
 </body>
