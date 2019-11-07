@@ -68,8 +68,13 @@ def write_article_to_file(article):
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name ="viewport" content ="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+    <!-- https://cdn.bootcss.com/normalize/8.0.1/normalize.min.css -->
     <link href="https://cdn.bootcss.com/normalize/8.0.1/normalize.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
+
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#337ab7">
