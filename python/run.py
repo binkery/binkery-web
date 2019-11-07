@@ -89,7 +89,7 @@ def write_article_to_file(article):
     <div  class="row-fluid">
         <div class="span8 offset2">
             <header>
-                <a href="{app[link]}">{app[name]}</a>
+                <h1><a href="{app[link]}">{app[name]}</a></h1>
             </header>
         </div>
     </div>
