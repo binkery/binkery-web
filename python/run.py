@@ -90,22 +90,11 @@ def write_article_to_file(article):
 <body>
     <div class="container-fluid">
 
-        <div  class="row">
-            <div class="col"></div>
-            <div class="col-sm-12 col-md-10 col-lg-10 col-xl-8">
-                <header>
-                    <h1><a href="{app[link]}">{app[name]}</a></h1>
-                </header>
-            </div>
-            <div class="col"></div>
-        </div><!-- row hreader -->
-        
-
         <div  class="row mb-5">
             <div class="col"></div>
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-8">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">主页</a>
+                    <a class="navbar-brand" href="{app[link]}">{app[name]}</a>
                     <ul class="nav nav-pills">{app[nav]}</ul>
                 </nav>
             </div>
