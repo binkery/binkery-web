@@ -75,11 +75,7 @@ def write_article_to_file(article):
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
 
-    <!-- https://cdn.bootcss.com/normalize/8.0.1/normalize.min.css 
-        <link href="https://cdn.bootcss.com/normalize/8.0.1/normalize.css" rel="stylesheet">
-    -->
-    <!-- https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css -->
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
 
     <script>
         var _hmt = _hmt || [];
@@ -95,25 +91,31 @@ def write_article_to_file(article):
     <div class="container-fluid">
 
         <div  class="row">
-            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+            <div class="col"></div>
+            <div class="col-sm-12 col-md-10 col-lg-10 col-xl-8">
                 <header>
                     <h1><a href="{app[link]}">{app[name]}</a></h1>
                 </header>
             </div>
+            <div class="col"></div>
         </div><!-- row hreader -->
         
 
-        <div  class="row">
-            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
-                <nav><ul class="nav nav-pills">{app[nav]}</ul></nav>
+        <div  class="row mb-5">
+            <div class="col"></div>
+            <div class="col-sm-12 col-md-10 col-lg-10 col-xl-8">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">主页</a>
+                    <ul class="nav nav-pills">{app[nav]}</ul>
+                </nav>
             </div>
+            <div class="col"></div>
         </div><!-- row nav -->
 
         <div class="row">
-            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
-                <div class="row">                
-
-                    <div class="col-lg-8">
+            <div class="col-md-1 col-lg-1 col-xl-2"></div>
+            <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
+                
                          <article>
                              {article[content]}
                              <P> - EOF - </P>
@@ -121,10 +123,10 @@ def write_article_to_file(article):
                         </article>
                     </div><!-- row content left -->
 
-                    <div class="col-lg-3 col-lg-offset-1">
-                         <div class="panel panel-default">
-                            <div class="panel-heading">目录树</div>
-                            <div class="panel-body"><ul>{app[sidebar]}</ul></div>
+                    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
+                         <div class="card">
+                            <div class="card-header">目录树</div>
+                            <div class="card-body"><ul>{app[sidebar]}</ul></div>
                         </div>
                     </div><!-- row content right -->
 
@@ -132,8 +134,8 @@ def write_article_to_file(article):
             </div>
         </div><!-- row content -->
 
-        <div  class="row">
-            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+        <div  class="row mt-5">
+            <div <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 col-xl-8 offset-xl-2">
                 <footer>
                      <p>网站更新时间:{app[last_modify_time]}</p>
                      <p>CopyRight &copy; <a href="{app[link]}">BETA.binkery.com</a></p>
@@ -221,7 +223,7 @@ def dispatch_path(parent,file):
             dispatch_path(node,f)
           
 def get_nav():
-    nav = '<li><a href="/">主页</a></li>'
+    nav = ''
     files = sorted(os.listdir(app['source']),reverse=False)
     for f in files:
         if f == 'README.md':
@@ -229,7 +231,7 @@ def get_nav():
         path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
-            nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
+            nav += '<li class="nav-item"><a class="nav-link" href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
     return nav
     
 def get_sidebar():
