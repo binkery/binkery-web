@@ -65,81 +65,85 @@ def write_article_to_file(article):
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name ="viewport" content ="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-
-    <!-- https://cdn.bootcss.com/normalize/8.0.1/normalize.min.css -->
-    <link href="https://cdn.bootcss.com/normalize/8.0.1/normalize.css" rel="stylesheet">
-
-    <!-- https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css -->
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
-
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#337ab7">
     <title>{article[title]} :: Binkery 技术博客</title>
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
+
+    <!-- https://cdn.bootcss.com/normalize/8.0.1/normalize.min.css 
+        <link href="https://cdn.bootcss.com/normalize/8.0.1/normalize.css" rel="stylesheet">
+    -->
+    <!-- https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet" media="screen">
+
     <script>
-    var _hmt = _hmt || [];
+        var _hmt = _hmt || [];
         (function() {{
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?1258cd282e3e864279d9edd53837183b";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1258cd282e3e864279d9edd53837183b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
         }})();
     </script>
 </head>
 <body>
-    <div  class="row-fluid">
-        <div class="span8 offset2">
-            <header>
-                <h1><a href="{app[link]}">{app[name]}</a></h1>
-            </header>
-        </div>
-    </div>
-    
-    <div class="row-fluid">
-        <div class="span8 offset2">
-            <nav>
-	            <ul class="nav nav-pills">
-                    {app[nav]}
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span8 offset2">
-            <div class="span8">
-                 <article>
-                     {article[content]}
-                     <P> - EOF - </P>
-                     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
-                </article>
+    <div class="container-fluid">
+
+        <div  class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+                <header>
+                    <h1><a href="{app[link]}">{app[name]}</a></h1>
+                </header>
             </div>
-            <div class="span4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        
-                    </div>
-                    <div class="panel-body">
-                        <ul>{app[sidebar]}</ul>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+        </div><!-- row hreader -->
         
-    </div>
-    <div class="row-fluid">
-        <div class="span8 offset2">
-            <footer>
-                 <p>网站更新时间:{app[last_modify_time]}</p>
-                 <p>CopyRight &copy; <a href="{app[link]}">BETA.binkery.com</a></p>
-            </footer>
-        </div>
-    </div>
+
+        <div  class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+                <nav><ul class="nav nav-pills">{app[nav]}</ul></nav>
+            </div>
+        </div><!-- row nav -->
+
+        <div class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+                <div class="row">                
+
+                    <div class="col-lg-8">
+                         <article>
+                             {article[content]}
+                             <P> - EOF - </P>
+                             <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
+                        </article>
+                    </div><!-- row content left -->
+
+                    <div class="col-lg-3 col-lg-offset-1">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">目录树</div>
+                            <div class="panel-body"><ul>{app[sidebar]}</ul></div>
+                        </div>
+                    </div><!-- row content right -->
+
+                </div>
+            </div>
+        </div><!-- row content -->
+
+        <div  class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+                <footer>
+                     <p>网站更新时间:{app[last_modify_time]}</p>
+                     <p>CopyRight &copy; <a href="{app[link]}">BETA.binkery.com</a></p>
+                </footer>
+            </div>
+        </div><!-- row footer -->
+
+
+    </div><!-- container-fluid -->
+
 </body>
 </html>
 '''.format(article=article,app=app)
@@ -229,7 +233,7 @@ def get_nav():
     return nav
     
 def get_sidebar():
-    nav = '<ul>'
+    nav = ''
     files = sorted(os.listdir(app['source']),reverse=False)
     for f in files:
         if f == 'README.md':
@@ -237,7 +241,7 @@ def get_sidebar():
         path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
-            nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
+            nav += '<li><a href="{link}">{title}</a>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
             children = sorted(os.listdir(path),reverse=False)
             nav += '<ul>'
             for child in children:
@@ -247,8 +251,8 @@ def get_sidebar():
                 child_title = get_title_from_source_file(child_path)
                 if os.path.isdir(child_path):
                     nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(child[3:7]) + '.html',title=child_title)
-            nav += '</ul>'
-    nav += '</ul>'
+            nav += '</ul></li>'
+    nav += ''
     return nav
     
 def date_from(y,m,d):
