@@ -84,7 +84,10 @@ def write_article_to_file(article):
             background-clip: border-box;
             padding:1em;
         }}
-        
+        blockquote{{
+            border-left:5px solid rgba(0, 0, 0, 0.125);
+            padding:1em;
+        }}
     </style>
     <script>
         var _hmt = _hmt || [];
