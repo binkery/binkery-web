@@ -76,14 +76,14 @@ def write_article_to_file(article):
     <meta name="description" content="{article[description]}">
 
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
-    <style>
-        pre{
+    <style type="text/css">
+        pre{{
             background-color:#f8f9fa;
             border:1px solid rgba(0, 0, 0, 0.125);
             border-radius:0.25rem;
             background-clip: border-box;
             padding:1em;
-        }
+        }}
         
     </style>
     <script>
