@@ -15,29 +15,7 @@ def write(path,content):
         f.write(content)
         f.close()
         
-def get_content_from_source_file(path):
-    if os.path.isdir(path):
-        md_file = os.path.join(path,'README.md')
-        if not os.path.exists(md_file):
-            basename = os.path.basename(path)
-            return '# ' + basename[3:]
-    else :
-        md_file = path
-    with open(md_file,'r',encoding='utf-8') as f:
-        content = f.read()
-        return content
-        
-def get_key_workds_from_source_file(path):
-    if os.path.isdir(path):
-        md_file = os.path.join(path,'README.md')
-        if not os.path.exists(md_file):
-            return ''
-    else :
-        md_file = path
-    with open(md_file,'r',encoding='utf-8') as f:
-        f.readline()
-        keywords = f.readline().strip().lstrip('-')
-        return keywords
+
         
 def path_to_html_path(path):
     #print('path_to_html_path ' + path)
@@ -116,6 +94,7 @@ def write_article_to_file(article):
         <div class="row">
             <div class="col-md-1 col-lg-1 col-xl-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
+                <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
                 <article>
                      {article[content]}
                      <P> - EOF - </P>
@@ -165,52 +144,38 @@ def get_title_from_source_file(path):
     with open(md_file,'r',encoding='utf-8') as f:
         _title = f.readline().strip().lstrip('#')
     return _title
-
+    
+def get_content_from_source_file(path):
+    if os.path.isdir(path):
+        md_file = os.path.join(path,'README.md')
+        if not os.path.exists(md_file):
+            basename = os.path.basename(path)
+            return '# ' + basename[3:]
+    else :
+        md_file = path
+    with open(md_file,'r',encoding='utf-8') as f:
+        content = f.read()
+    return content
+        
+def get_key_workds_from_source_file(path):
+    if os.path.isdir(path):
+        md_file = os.path.join(path,'README.md')
+        if not os.path.exists(md_file):
+            return ''
+    else :
+        md_file = path
+    with open(md_file,'r',encoding='utf-8') as f:
+        f.readline()
+        keywords = f.readline().strip().lstrip('-')
+        return keywords
+    
+    
 def toInt(path):
     try:
         return str(int(path))
     except (TypeError,ValueError):
         return path
     
-def dispatch_path(parent,file):
-    node = {}
-    if file == '.' :
-        node['source'] = parent['source']
-        node['target'] = app['target'] + 'index.html'
-        node['link'] = app['link'] + 'index.html'
-    else :
-        node['source'] = os.path.join(parent['source'],file)
-        if os.path.isdir(node['source']):
-            node['target'] = app['target'] + 'category/' + toInt(file[3:7]) + '.html'
-            node['link'] = app['link'] + 'category/' + toInt(file[3:7]) + '.html'
-        else:
-            node['target'] = app['target'] + 'archives/' + toInt(file[3:10]) + '.html'
-            node['link'] = app['link'] + 'archives/' + toInt(file[3:10]) + '.html'
-    node['title'] = get_title_from_source_file(node['source'])
-    node['content'] = get_content_from_source_file(node['source'])
-    node['keywords'] = get_key_workds_from_source_file(node['source'])
-    if os.path.isdir(node['source']):
-        files = sorted(os.listdir(node['source']),reverse=False)
-        node['content'] += '\n## 文章列表 \n'
-        for f in files:
-            if f == 'README.md':
-                continue
-            child_file = os.path.join(node['source'],f)
-            child_title = get_title_from_source_file(child_file)
-            if os.path.isdir(child_file):
-                child_link = app['link'] + 'category/' + toInt(f[3:7]) + '.html'
-            else:
-                child_link = app['link'] + 'archives/' + toInt(f[3:10]) + '.html' 
-            node['content'] += '- [' + child_title + '](' + child_link + ')\n'
-    write_article_to_file(node)
-
-    if os.path.isdir(node['source']):
-        files = sorted(os.listdir(node['source']),reverse=False)
-        for f in files :
-            if f == 'README.md':
-                continue
-            # 最后需要递归一下
-            dispatch_path(node,f)
           
 def get_nav():
     nav = ''
@@ -257,6 +222,43 @@ def date_to(y,m,d):
     d2 = datetime.date(y,m,d)
     return (d2-d1).days
 
+def dispatch_tree(parent):
+    files = sorted(os.listdir(parent['source']),reverse=False)
+    for file in files:
+        if file == 'README.md':
+            continue
+        child = {}
+        child['source'] = os.path.join(parent['source'],file)
+        child['parent'] = parent
+        child['title'] = get_title_from_source_file(child['source'])
+        parent['children'].append(child)
+        if os.path.isdir(child['source']):
+            child['target'] = app['target'] + 'category/' + toInt(file[3:7]) + '.html'
+            child['link'] = app['link'] + 'category/' + toInt(file[3:7]) + '.html'
+            child['children'] = []
+            dispatch_tree(child)
+        else:
+            child['target'] = app['target'] + 'archives/' + toInt(file[3:10]) + '.html'
+            child['link'] = app['link'] + 'archives/' + toInt(file[3:10]) + '.html'
+        print(child['link'] + ","  + child['title'])
+    
+def out_put(node):
+    node['content'] = get_content_from_source_file(node['source'])
+    node['keywords'] = get_key_workds_from_source_file(node['source'])
+    node['parent_path'] = get_parent_path(node)
+    if os.path.isdir(node['source']):
+        node['content'] += '\n## 文章列表 \n'
+        for child in node['children']:
+            node['content'] += '- [' + child['title'] + '](' + child['link'] + ')\n'
+            out_put(child)
+    write_article_to_file(node)
+    
+def get_parent_path(node):
+    if node['parent'] == None:
+        return ''
+    return get_parent_path(node['parent']) + '<li class="breadcrumb-item"><a href="{link}">{title}</a></li>'.format(link=node['parent']['link'],title=node['parent']['title']) 
+    
+    
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
 
 app = {
@@ -272,7 +274,14 @@ app['sidebar'] = get_sidebar()
 root = {
     'source':app['source'],
     'link':app['link'],
-    'target':app['target'],
-    'content':''
+    'target':app['target'] + 'index.html',
+    'content':'',
+    'parent':None,
+    'children':[],
+    'title':'主页',
+    'keywords':''
+    
 }
-dispatch_path(root,'.')
+dispatch_tree(root)
+out_put(root)
+#dispatch_path(root,'.')
