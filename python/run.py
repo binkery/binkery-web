@@ -16,16 +16,6 @@ def write(path,content):
         f.close()
         
 
-        
-def path_to_html_path(path):
-    #print('path_to_html_path ' + path)
-    if path == '../content/':
-        return '../html/index.html'
-    if os.path.isdir(path):
-        return '../html' + path[10:] + '/index.html'
-    else:
-        return '../html' + path[10:-2] + 'html'
-        
 def remove_tags(text):
     return BeautifulSoup(text, "lxml").text
         
@@ -121,24 +111,13 @@ def write_article_to_file(article):
     #print(local_path)
     write(local_path,template)
     
-def path_to_link(path):
-    #print('===== ' + path)
-    if path == '../content/':
-       #print('=======')
-       return '/index.html'
-    if os.path.isdir(path):
-        return path[10:] + '/index.html'
-    else:
-        return path[10:-2] + 'html'
-        
-        
 def get_title_from_source_file(path):
     if os.path.isdir(path):
         md_file = os.path.join(path,'README.md')
         if not os.path.exists(md_file):
             #print(os.path.basename(path))
             basename = os.path.basename(path)
-            return basename[3:]
+            return basename[4:]
     else:
         md_file = path
     with open(md_file,'r',encoding='utf-8') as f:
@@ -150,7 +129,7 @@ def get_content_from_source_file(path):
         md_file = os.path.join(path,'README.md')
         if not os.path.exists(md_file):
             basename = os.path.basename(path)
-            return '# ' + basename[3:]
+            return '# ' + basename[4:]
     else :
         md_file = path
     with open(md_file,'r',encoding='utf-8') as f:
@@ -186,7 +165,7 @@ def get_nav():
         path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
-            nav += '<li class="nav-item"><a class="nav-link" href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
+            nav += '<li class="nav-item"><a class="nav-link" href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[:4]) + '.html',title=title)
     return nav
     
 def get_sidebar():
@@ -198,7 +177,7 @@ def get_sidebar():
         path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
-            nav += '<li><a href="{link}">{title}</a>\n'.format(link=app['link'] + 'category/' + toInt(f[3:7]) + '.html',title=title)
+            nav += '<li><a href="{link}">{title}</a>\n'.format(link=app['link'] + 'category/' + toInt(f[:4]) + '.html',title=title)
             children = sorted(os.listdir(path),reverse=False)
             nav += '<ul>'
             for child in children:
@@ -207,7 +186,7 @@ def get_sidebar():
                 child_path = os.path.join(path,child)
                 child_title = get_title_from_source_file(child_path)
                 if os.path.isdir(child_path):
-                    nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(child[3:7]) + '.html',title=child_title)
+                    nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(child[:4]) + '.html',title=child_title)
             nav += '</ul></li>'
     nav += ''
     return nav
@@ -233,13 +212,13 @@ def dispatch_tree(parent):
         child['title'] = get_title_from_source_file(child['source'])
         parent['children'].append(child)
         if os.path.isdir(child['source']):
-            child['target'] = app['target'] + 'category/' + toInt(file[3:7]) + '.html'
-            child['link'] = app['link'] + 'category/' + toInt(file[3:7]) + '.html'
+            child['target'] = app['target'] + 'category/' + toInt(file[:4]) + '.html'
+            child['link'] = app['link'] + 'category/' + toInt(file[:4]) + '.html'
             child['children'] = []
             dispatch_tree(child)
         else:
-            child['target'] = app['target'] + 'archives/' + toInt(file[3:10]) + '.html'
-            child['link'] = app['link'] + 'archives/' + toInt(file[3:10]) + '.html'
+            child['target'] = app['target'] + 'archives/' + toInt(file[:7]) + '.html'
+            child['link'] = app['link'] + 'archives/' + toInt(file[:7]) + '.html'
         print(child['link'] + ","  + child['title'])
     
 def out_put(node):
