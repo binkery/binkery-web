@@ -254,9 +254,9 @@ def out_put(node):
     write_article_to_file(node)
     
 def get_parent_path(node):
-    if node['parent'] == None:
+    if node == None:
         return ''
-    return get_parent_path(node['parent']) + '<li class="breadcrumb-item"><a href="{link}">{title}</a></li>'.format(link=node['parent']['link'],title=node['parent']['title']) 
+    return get_parent_path(node['parent']) + '<li class="breadcrumb-item"><a href="{link}">{title}</a></li>'.format(link=node['link'],title=node['title']) 
     
     
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
