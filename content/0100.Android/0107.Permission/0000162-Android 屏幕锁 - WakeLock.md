@@ -3,6 +3,7 @@
 
 
 ## PowerManager
+
 android.os.PowerManager
 PowerManager 是用来管理设备的电源状态的类。下面是官方文档
 
