@@ -61,7 +61,7 @@ def write_article_to_file(article):
         var _hmt = _hmt || [];
         (function() {{
             var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?1258cd282e3e864279d9edd53837183b";
+            hm.src = "https://hm.baidu.com/hm.js?cceda2bd9bbe16209c98859a1cab0112";
             var s = document.getElementsByTagName("script")[0]; 
             s.parentNode.insertBefore(hm, s);
         }})();
@@ -84,6 +84,18 @@ def write_article_to_file(article):
         <div class="row">
             <div class="col-md-1 col-lg-1 col-xl-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
+                <article>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-gi-19+58-26-7b"
+                         data-ad-client="ca-pub-5264794978178106"
+                         data-ad-slot="8172112958"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({{}});
+                    </script>
+                </article>
                 <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
                 <article>
                      {article[content]}
