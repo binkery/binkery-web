@@ -103,11 +103,51 @@ def write_article_to_file(article):
                      <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
                 </article>
             </div><!-- row content left -->
+            <!-- 目录树 -->
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
                 <div class="card">
                     <div class="card-header">目录树</div><div class="card-body"><ul>{app[sidebar]}</ul></div>
                 </div><!--card -->
-            </div><!-- row content right -->
+            </div>
+            <!-- 目录树 -->
+
+            <!-- 赞助 -->
+            <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
+                <div class="card">
+                    <div class="card-header">赞助</div><div class="card-body">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-gi-19+58-26-7b"
+                         data-ad-client="ca-pub-5264794978178106"
+                         data-ad-slot="8172112958"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({{}});
+                    </script>
+                    </div>
+                </div><!--card -->
+            </div>
+            <!-- 赞助 -->
+
+            <!-- 友情链接 -->
+            <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
+                <div class="card">
+                    <div class="card-header">友情链接</div><div class="card-body">
+                    <ul>
+                    <li><a href="http://lusongsong.com/" target="_blank"> 卢松松博客 </a></li>
+			        <li><a href="http://www.bpqn.com/" target="_blank"> 北漂青年 </a></li>
+			        <li><a href="http://www.xiaoz.me/" target="_blank">wordpress教程</a></li>
+			        <li><a href="http://xiaohost.com/" target="_blank">老牛博客</a></li>
+			        <li><a href="http://www.ikuju.com/" target="_blank">酷居科技</a></li>
+                    <li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
+			        <li><a href="http://www.binkery.com/archives/1.html"> 友链申请 </a></li>
+                    </ul>
+                    </div>
+                </div><!--card -->
+            </div>
+            <!-- 友情链接 -->
+
         </div><!-- row content -->
 
         <div  class="row mt-5">
