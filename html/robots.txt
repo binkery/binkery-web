@@ -1,0 +1,7 @@
+#
+# robots.txt for binkery's blog
+#
+User-agent: *
+Allow: /
+#Sitemap: http://www.binkery.com/sitemap.xml
+
