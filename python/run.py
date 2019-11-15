@@ -131,7 +131,7 @@ def write_article_to_file(article):
 
         <div  class="row mt-5">
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 col-xl-8 offset-xl-2">
-            <footer><p class="text-center">CopyRight &copy; <a href="{app[link]}">BETA.binkery.com</a> ^_^ Last Build @ {app[last_modify_time]} </p></footer>
+            <footer><p class="text-center">CopyRight &copy; <a href="{app[link]}">binkery.com</a> ^_^ Last Build @ {app[last_modify_time]} </p></footer>
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
@@ -274,7 +274,7 @@ cst_tz = datetime.timezone(datetime.timedelta(hours=8))
 app = {
     'source':'../content/',
     'target':'../html/',
-    'link':'http://beta.binkery.com/',
+    'link':'https://binkery.com/',
     'last_modify_time':datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S"),
     'name':'Binkery技术博客'
 }
