@@ -105,28 +105,13 @@ def write_article_to_file(article):
             </div><!-- row content left -->
 
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
-            <!-- 目录树 -->
+                <!-- 目录树 -->
                 <div class="card">
                     <div class="card-header">目录树</div><div class="card-body"><ul>{app[sidebar]}</ul></div>
                 </div><!--card -->
-<!-- 目录树 -->
-<!-- 赞助 -->
-                <div class="card">
-                    <div class="card-header">赞助</div><div class="card-body">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-format="fluid"
-                         data-ad-layout-key="-gi-19+58-26-7b"
-                         data-ad-client="ca-pub-5264794978178106"
-                         data-ad-slot="8172112958"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({{}});
-                    </script>
-                    </div>
-                </div><!--card -->
-<!-- 赞助 -->
-<!-- 友情链接 -->
+                <!-- 目录树 -->
+
+                <!-- 友情链接 -->
                 <div class="card">
                     <div class="card-header">友情链接</div><div class="card-body">
                     <ul>
@@ -139,19 +124,9 @@ def write_article_to_file(article):
 			        <li><a href="http://www.binkery.com/archives/1.html"> 友链申请 </a></li>
                     </ul>
                     </div>
-                </div><!--card -->
- <!-- 友情链接 -->
+                </div>
+                 <!-- 友情链接 -->
             </div>
-            
-
-            
-
-            
-
-            
-
-           
-
         </div><!-- row content -->
 
         <div  class="row mt-5">
