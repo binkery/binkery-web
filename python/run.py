@@ -56,6 +56,9 @@ def write_article_to_file(article):
             border-left:5px solid rgba(0, 0, 0, 0.125);
             padding:1em;
         }}
+	.card-body ul{{
+  		padding-inline-start:1rem;
+	}}
     </style>
     <script>
         var _hmt = _hmt || [];
