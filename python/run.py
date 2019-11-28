@@ -5,6 +5,7 @@ import codecs
 import datetime
 import markdown
 import time
+import html
 from bs4 import BeautifulSoup
 
 def write(path,content):
@@ -174,7 +175,7 @@ def get_title_from_source_file(path):
         md_file = path
     with open(md_file,'r',encoding='utf-8') as f:
         _title = f.readline().strip().lstrip('#')
-    return remove_tags(markdown.markdown(_title))
+    return _title
     
 def get_content_from_source_file(path):
     if os.path.isdir(path):
@@ -289,7 +290,7 @@ def out_put(node):
 def get_parent_path(node):
     if node == None:
         return ''
-    return get_parent_path(node['parent']) + '<li class="breadcrumb-item"><a href="{link}">{title}</a></li>'.format(link=node['link'],title=node['title']) 
+    return get_parent_path(node['parent']) + '<li class="breadcrumb-item"><a href="{link}">{title}</a></li>'.format(link=node['link'],title=html.escape(node['title'])) 
     
     
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
@@ -322,7 +323,7 @@ sitemap = ''
 for link in app['sitemap']:
     sitemap += link + '\n'
 
-write(app['target'] + 'sitemap.txt',sitemap)    
+write(app['target'] + 'sitemap.txt',sitemap)
 
 
 
