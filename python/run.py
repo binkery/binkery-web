@@ -122,13 +122,13 @@ def write_article_to_file(article):
                 <div class="card">
                     <div class="card-header">友情链接</div><div class="card-body">
                     <ul>
+                    <li><a href="http://www.binkery.com/archives/1.html"> 友链申请 </a></li>
                     <li><a href="http://lusongsong.com/" target="_blank"> 卢松松博客 </a></li>
 			        <li><a href="http://www.bpqn.com/" target="_blank"> 北漂青年 </a></li>
 			        <li><a href="http://www.xiaoz.me/" target="_blank">wordpress教程</a></li>
 			        <li><a href="http://xiaohost.com/" target="_blank">老牛博客</a></li>
 			        <li><a href="http://www.ikuju.com/" target="_blank">酷居科技</a></li>
                     <li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
-			        <li><a href="http://www.binkery.com/archives/1.html"> 友链申请 </a></li>
                     </ul>
                     </div>
                 </div>
