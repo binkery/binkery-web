@@ -134,7 +134,10 @@ def write_article_to_file(article):
 
         <div  class="row mt-5">
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 col-xl-8 offset-xl-2">
-            <footer><p class="text-center">CopyRight &copy; <a href="{app[link]}">binkery.com</a> ^_^ Last Build @ {app[last_modify_time]} </p></footer>
+            <footer>
+                <p class="text-center">CopyRight &copy; <a href="{app[link]}">binkery.com</a> ^_^ Last Build @ {app[last_modify_time]} </p>
+                <p class="text-center"><a href="{app[link]}/sitemap.txt">sitemap</a></p>
+            </footer>
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
@@ -253,12 +256,14 @@ def dispatch_tree(parent):
         else:
             child['target'] = app['target'] + 'archives/' + toInt(file[:7]) + '.html'
             child['link'] = app['link'] + 'archives/' + toInt(file[:7]) + '.html'
-        print(child['link'] + ","  + child['title'])
+        #print(child['link'] + ","  + child['title'])
+        
     
 def out_put(node):
     node['content'] = get_content_from_source_file(node['source'])
     node['keywords'] = get_key_workds_from_source_file(node['source'])
     node['parent_path'] = get_parent_path(node)
+    app['sitemap'].append(node['link'])
     if os.path.isdir(node['source']):
         node['content'] += '\n## 文章列表 \n'
         for child in node['children']:
@@ -283,6 +288,7 @@ app = {
 }
 app['nav'] = get_nav()
 app['sidebar'] = get_sidebar()
+app['sitemap'] = []
 
 root = {
     'source':app['source'],
@@ -297,4 +303,12 @@ root = {
 }
 dispatch_tree(root)
 out_put(root)
-#dispatch_path(root,'.')
+sitemap = ''
+for link in app['sitemap']:
+    sitemap += link + '\n'
+
+write(app['target'] + 'sitemap.txt',sitemap)    
+
+
+
+
