@@ -145,7 +145,7 @@ def write_article_to_file(article):
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
-    <scrpit>
+    <script>
         var gitalk = new Gitalk({{
           clientID: 'b1641f3ff304a7d50317',
           clientSecret: '4ce2efd92fe9ab3386edf0bf4a8736899639002c',
