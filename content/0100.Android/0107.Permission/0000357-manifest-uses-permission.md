@@ -1,8 +1,8 @@
-# Android 权限管理之 \<uses-permission\> 标签
+# Android 权限管理之 <uses-permission\> 标签
 - Android,权限,permission,
 
 
-\<uses-permission\>标签位于 Manifest.xml 文件里，现在的 IDE 会提示需要把 <uses-permission> 标签写于 <application> 之前。
+<uses-permission\>标签位于 Manifest.xml 文件里，现在的 IDE 会提示需要把 <uses-permission> 标签写于 <application> 之前。
 
 
 语法：
