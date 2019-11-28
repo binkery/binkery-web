@@ -174,7 +174,7 @@ def get_title_from_source_file(path):
         md_file = path
     with open(md_file,'r',encoding='utf-8') as f:
         _title = f.readline().strip().lstrip('#')
-    return _title
+    return markdown.markdown(_title)
     
 def get_content_from_source_file(path):
     if os.path.isdir(path):
