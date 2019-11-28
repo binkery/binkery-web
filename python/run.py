@@ -42,6 +42,8 @@ def write_article_to_file(article):
     <title>{article[title]} :: Binkery 技术博客</title>
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
+    <!--友联 www.51link.com-->    
+    <meta name="auth" content="2410f01cc34c57702bbec8f884db18d5"/>
 
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
     <style type="text/css">
