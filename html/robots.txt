@@ -3,5 +3,5 @@
 #
 User-agent: *
 Allow: /
-#Sitemap: http://www.binkery.com/sitemap.xml
+Sitemap: https://binkery.com/sitemap.txt
 
