@@ -69,6 +69,9 @@ def write_article_to_file(article):
             s.parentNode.insertBefore(hm, s);
         }})();
     </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -105,6 +108,7 @@ def write_article_to_file(article):
                      <P> - EOF - </P>
                      <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
                 </article>
+                <div id="gitalk-container"></div>
             </div><!-- row content left -->
 
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
@@ -141,7 +145,19 @@ def write_article_to_file(article):
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
+    <scrpit>
+        var gitalk = new Gitalk({{
+          clientID: 'b1641f3ff304a7d50317',
+          clientSecret: '4ce2efd92fe9ab3386edf0bf4a8736899639002c',
+          repo: 'blog-comments',
+          owner: 'binkery',
+          admin: ['binkery'],
+          id: location.pathname, 
+          distractionFreeMode: false 
+        }})
 
+        gitalk.render('gitalk-container')
+    </script>
 </body>
 </html>
 '''.format(article=article,app=app)
