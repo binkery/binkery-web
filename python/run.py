@@ -39,7 +39,7 @@ def write_article_to_file(article):
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#337ab7">
-    <title>{article[title]} :: Binkery 技术博客</title>
+    <title>{article[title]} | Binkery 技术博客</title>
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
     <!--友联 www.51link.com-->    
