@@ -45,6 +45,8 @@ def write_article_to_file(article):
     <meta name="description" content="{article[description]}">
     <!--友联 www.51link.com-->    
     <meta name="auth" content="2410f01cc34c57702bbec8f884db18d5"/>
+    <!-- 2998.com -->
+    <meta name="wlhlauth" content="2a45547761b137cbffeff6b159972c1e"/>
 
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
     <style type="text/css">

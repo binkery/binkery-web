@@ -1,5 +1,5 @@
 # GridView 设置 item 间距的方法
-- Android,开发,gridview,
+- Android,开发,gridview,setHorizontalSpacing,setVerticalSpacing,GridView间距
 
 GridView 提供这么两个方法 setHorizontalSpacing(int) 和 setVerticalSpacing(int)。API的DOC如下：
 
@@ -25,4 +25,4 @@ Parameters:verticalSpacing The amount of vertical space between items, in pixels
 @attr ref android.R.styleable#GridView_verticalSpacing
 
 
-注意：这里设置的是item之间的间隔,space between items.
+注意：这里设置的是 item 之间的间隔, space between items.
