@@ -72,9 +72,9 @@ def write_article_to_file(article):
             s.parentNode.insertBefore(hm, s);
         }})();
     </script>
-
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <!-- gitalk 评论-->
+    <link rel="stylesheet" href="https://unpkg.com/gitalk@1.5.0/dist/gitalk.css">
+    
 </head>
 <body>
     <div class="container-fluid">
@@ -148,6 +148,7 @@ def write_article_to_file(article):
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
+    <script src="https://unpkg.com/gitalk@1.5.0/dist/gitalk.min.js"></script>
     <script>
         var gitalk = new Gitalk({{
           clientID: 'b1641f3ff304a7d50317',
