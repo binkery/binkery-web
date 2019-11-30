@@ -95,6 +95,17 @@ def write_article_to_file(article):
         <div class="row">
             <div class="col-md-1 col-lg-1 col-xl-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
+                
+                <div style="height: 100px;" class="d-flex justify-content-center mb-5">
+                    <img src="https://binkery.com/img/ad1.png" class="mw-100 mh-100" alt="Responsive image">
+                </div>
+                
+                <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
+                <article>
+                     {article[content]}
+                     <P> - EOF - </P>
+                     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
+                </article>
                 <article>
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <ins class="adsbygoogle"
@@ -107,24 +118,28 @@ def write_article_to_file(article):
                          (adsbygoogle = window.adsbygoogle || []).push({{}});
                     </script>
                 </article>
-                <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
-                <article>
-                     {article[content]}
-                     <P> - EOF - </P>
-                     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
-                </article>
                 <div id="gitalk-container"></div>
             </div><!-- row content left -->
 
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
                 <!-- 目录树 -->
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">目录树</div><div class="card-body"><ul>{app[sidebar]}</ul></div>
                 </div><!--card -->
                 <!-- 目录树 -->
 
+                <!-- 赞助 -->
+                <div class="card mb-3">
+                    <div class="card-header">赞助商</div><div class="card-body">
+                        <div style="height: 200px;width：200px;" class="d-flex justify-content-center">
+                            <img src="https://binkery.com/img/ad2.jpg" class="mw-100 mh-100" alt="Responsive image">
+                        </div>
+                    </div>
+                </div><!--card -->
+                <!-- 赞助 -->
+                
                 <!-- 友情链接 -->
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">友情链接</div><div class="card-body">
                     <ul>
                     <li><a href="http://www.binkery.com/archives/1.html">友链申请</a></li>
