@@ -147,7 +147,7 @@ def write_article_to_file(article):
 			        <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
 			        <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
 			        <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-
+			        <li><a href="https://www.stellarinfo.com/hk/" target="_blank">文件恢复软件</a></li>
                     <li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
                     </ul>
                     </div>
