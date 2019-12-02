@@ -97,7 +97,8 @@ def write_article_to_file(article):
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
                 
                 <div style="height: 100px;" class="d-flex justify-content-center mb-5">
-                    <img src="https://binkery.com/img/ad1.png" class="mw-100 mh-100" alt="Responsive image">
+<!--                    <img src="https://binkery.com/img/ad1.png" class="mw-100 mh-100" alt="Responsive image">  -->   
+                 <script src='https://ad.0728w.cn/?id=8004&sign=2019122281248535982694'></script>
                 </div>
                 
                 <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
