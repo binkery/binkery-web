@@ -132,7 +132,7 @@ def write_article_to_file(article):
                 <!-- 赞助 -->
                 <div class="card mb-3">
                     <div class="card-header">赞助商</div><div class="card-body">
-                        <script src='https://ad.0728w.cn/?id=8005&sign=20191221597097909943'></script>
+                        <script src='https://ad.0728w.cn/?id=8006&sign=2019122185450020002789'></script>
                         <!--
                         <div style="height: 200px;width：200px;" class="d-flex justify-content-center">
                             <img src="https://binkery.com/img/ad2.jpg" class="mw-100 mh-100" alt="Responsive image">
