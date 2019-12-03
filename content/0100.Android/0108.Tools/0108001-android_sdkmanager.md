@@ -1,0 +1,78 @@
+# Android sdkmanager 的使用
+- Android,sdkmanager,命令行
+- 2018.05.04
+
+sdkmanager 是一个查看、安装、更新、卸载 Android SDK 包的命令行工具。通过 sdkmanager ，我们可以通过命令行来安装和更新 Android sdk。
+
+sdkmanager 是一个查看、安装、更新、卸载 Android SDK 包的命令行工具。如果你使用的是 Android Studio，你可以直接使用 IDE 提供的图形界面工具，但是不得不说那个破玩意特别难用，特别是在目前的国内环境。而且它的图形界面设计得很不友好，还不如以前的 SDK Manager 插件呢。
+
+sdkmanager 在 Android SDK Tools 包下面，25.2.5 或者更高的版本上，位置在 tools/bin/ 目录下。
+
+## 使用
+
+### 显示列表
+
+列出所有可用的包。其中 options 参数的意义在最后统一解释。
+
+    sdkmanager --list [options]
+
+### 安装
+
+    sdkmanager packages [options]
+
+packages 是 --list 命令列出的 path 字段。内容大概是 "build-tools;27.0.3" 或者 "platforms;android-26" 这样的。如果一次安装多个，用空格隔开，注意每一个都需要引用包起来。比较恶心的是， --list 列出的 path 如果比较长的情况下，path 的中间是 ... 的，就像这样 : "add-ons;addon-g..._apis-google-15"
+
+2018.05.10 更新： 在最新的 26.1.1 版本中，path 已经可以显示出全部的内容了。
+
+这是安装多个包的例子
+
+    sdkmanager "platform-tools" "platforms;android-26"
+
+还可以这样
+
+    sdkmanager --package_file=package_file [options]
+
+package_file 是一个文本文件，每行一个包的 path，path 是不需要引号包含起来的。但是在 26.1.1 版本中，该参数一直没有成功。出现的提示是 "unknown argument --package_file"。
+
+### 卸载
+
+    sdkmanager --uninstall packages [options]
+    sdkmanager --uninstall --package_file=package_file [options]
+
+### 更新
+
+    sdkmanager --update [options]
+
+## Options
+
+### --sdk_root=path
+
+指定一个特定的 SDK 目录。
+
+### --channel=channel_id
+
+指定渠道，有稳定的、beta的、开发的，等等。 各个渠道 id 的意义： 0 (Stable)，1 (Beta)，2 (Dev)，3 (Canary)。
+
+### --include_obsolete
+
+是否包含过期的包，比如 --list 命令默认会过滤掉已经过期的包。
+
+### --no_https
+
+使用该属性来强制使用 http 而不是 https。http 要比 https 要快一些。
+
+### --verbose
+
+该参数用来输出更多的日志信息。
+
+### --proxy={http | socks}
+
+代理的方式，比较常见的是 http。
+
+### --proxy_host={IP_address | DNS_address}
+
+代理地址
+
+### --proxy_port=port_number
+
+代理端口

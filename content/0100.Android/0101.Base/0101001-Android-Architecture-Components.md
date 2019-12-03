@@ -1,0 +1,76 @@
+# Android 架构组件介绍
+- Android,Architecture,Components,架构
+- 2018.08.08
+
+我们在 Android 开发的过程中，总是在和一些问题纠缠，比如在生命周期的管理，在屏幕旋转的时候重新布局，绘制，保存还原数据等。我们也一直在致力于减少内存的占用，减少内存泄漏的风险，优化我们的代码，特别在大项目中，要增加代码的可维护性。
+
+## Android Architecture Components
+
+我们在 Android 开发的过程中，总是在和一些问题纠缠，比如在生命周期的管理，在屏幕旋转的时候重新布局，绘制，保存还原数据等。我们也一直在致力于减少内存的占用，减少内存泄漏的风险，优化我们的代码，特别在大项目中，要增加代码的可维护性。
+
+Andorid 构建组件提供了一些新的解决方案
+
+ * Room 一个新的 SQLite ORM（Object Relational Mapping） 库
+
+ * LiveData 观察者模式的运用，观察数据库的变化。
+
+ * ViewModel 在配置变化的时候，缓存数据的库 Cache data that needs to survive through configuration changes.
+
+ * LifeCycle 让没有生命周期的对象感知到生命周期的变化
+
+
+## Room
+
+Room 是一个 ORM 库，和 GreenDAO 的设计思路是基本一致的。但是由于出身好，所以 GreenDAO 和其他类似的库有被淘汰的意思。
+
+使用 Room 可以大大的减少代码的编写量，通过一些注解，让代码看上去更加简洁漂亮。既然用了注解，那么就会有很大代码是在编译的时期完成的，包括一些代码检查，减少了程序员的工作量，也减少了出错的可能。配合 RxJava 和 LiveData ，可以实现对数据库变化的观察。
+
+### 几个重要的注解
+
+ * (1) @Entity 定义一个数据库表格
+ * (2) @DAO 数据的读写 API
+ * (3) @Database 数据库
+
+
+### Entity
+
+给一个 Java 类加上 @Entity 注解，就可以对应到数据库里的一张表。你可以指定表的名字 @Entity (taskName =”new_table_name”)。定义完表，你需要定义字段。Java 类中的成员变量可以对应为表中的字段。你至少需要一个 @PrimaryKey 定义的成员变量。Room 要求一个 Java 类只能有一个构造方法，如果你有多个构造方法，你需要给其他构造方法加上 @ignore 注解。
+
+### DAO
+
+DAO 是我们操作数据的类。我们给一个接口 interface 加上 @Dao 注解。然后我们再定义一些方法来操作数据库。在方法上增加 @Query, @Insert, @Update, @Delete 这些注解就可以。比如这样：
+
+    @Quert(“SELECT * FROM task ORDER BY priority”)
+    List<TaskEntry> loadAllTasks();
+
+### Database
+
+我们需要写一个抽象类，继承于 roomDatabase ，然后调用 getInstance() 方法，可以获得一个单例对象。当我们第一次调用改方法的时候，会去检查数据库是否存在，并且创建。我们需要在 @Database 注解上标明数据库的版本号等信息。
+
+
+## LiveData
+
+LiveData 是一个可观察的数据持有类，不同于普通观察者，LiveData 具有生命周期。LiveData 位于数据库和 UI 之间，LiveData 可以监视数据库的变化，并且通知观察者。
+
+    UI <-(Notify)-(Observe)-> Live Data ← Monitor → Database
+
+## ViewModel
+
+ViewModel 被设计，用来在生命周期中存储和管理 UI 相关的数据。ViewModel 的生命周期从 Activity 被创建开始，直到 finished。当 Activity 被重新创建，我们可以获得同一个 ViewModel 对象，并且从 ViewModel 可以得到缓存的数据。
+
+我们经常通过异步请求来获得数据，没有 ViewModel 的情况下，在异步请求结束前，Activity 可能已经被销毁了，这容易带来内存泄漏。如果用 ViewModel 来发起异步请求，异步请求的结果会返回给 ViewModel，即使 Activity 已经被销毁了也没有关系，这样，就可以减少内存泄漏的风险了。
+
+使用 ViewModel，我们需要给 Activity 写一个类，继承于 AndoidViewModel ，在这个 ViewModel 里，我们创建一个 LiveData 的私有成员变量。
+
+在 Activity 中，我们通过 ViewModelProviders.of() 的方法来获得 ViewModel 的对象。这里应该是利用反射来获得你自定义的 ViewModel。拿到 ViewModel 对象后，你就可以从 ViewModel 中获得数据来更新 UI 了。
+
+## LifeCycle
+
+LifeCycle 组件允许非生命周期对象获得生命周期的通知。LifeCycle 有两个接口，
+
+(1) Lifecycle Owner 生命周期拥有者，比如 Activity Fragment 对象。
+(2) Lifecycle Observers 生命周期观察者，他们观察生命周期拥有者，并且在生命周期变化的时候获得通知。
+
+LiveDate 已经实现了 LifeCycle ，我们也可以为自己的类实现 LifeCycle。
+
+<https://medium.com/@gadi.krn/android-architecture-components-make-your-app-as-you-dreamed-9a786fce67ea>

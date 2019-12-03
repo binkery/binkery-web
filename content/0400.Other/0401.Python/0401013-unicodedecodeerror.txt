@@ -1,0 +1,13 @@
+# UnicodeDecodeError: 'gbk' codec can't decode byte 0xaa in position 553: illegal multibyte sequence
+# windows,python,GBK,utf-8
+# 2019.04.06
+
+python 脚本在 windows 上运行的时候报错，提示编码问题。
+
+    UnicodeDecodeError: 'gbk' codec can't decode byte 0xaa in position 553: illegal multibyte sequence
+    
+根据 [Python 3 Unicode document](https://docs.python.org/3/howto/unicode.html#reading-and-writing-unicode-data) ，在打开文件的时候，可以指定编码格式，比如：
+    
+    with open(filename, encoding='utf-8', mode = ‘r') as f:
+        for line in f:
+            print(repr(line))

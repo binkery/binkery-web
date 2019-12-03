@@ -1,0 +1,58 @@
+# 利用内部 SDK 镜像更新 Android SDK
+- Android,SDK,镜像,服务器
+- 2018.05.08
+
+Android 开发的环境部署还是比较麻烦的。Android 的 SDK 更新还算比较频繁，更新的量也比较大，更重要的是服务器是在国外，基本上处于被墙的状态。每一个新员工入职的时候，或者员工更新工作环境的时候，更新或者安装 SDK 变成一件非常痛苦的事情。
+
+Android 开发的环境部署还是比较麻烦的。Android 的 SDK 更新还算比较频繁，更新的量也比较大，更重要的是服务器是在国外，基本上处于被墙的状态。每一个新员工入职的时候，或者员工更新工作环境的时候，更新或者安装 SDK 变成一件非常痛苦的事情。
+
+再加上 Android SDK manager Standalone 在后来的更新版本中移除掉了，只能通过 Android Studio 的那个破界面进行更新，非常不方便。
+
+## 镜像服务器
+
+首先需要有一台镜像服务器，服务器很简单，我只安装了 nginx ，还有 Python3 的运行环境。最开始从网上找了一个镜像服务器的 Python 脚本，确实好用，只不过在运行了一段时间后发现，镜像服务器快没有空间了，看来是当时申请的时候申请少了。再细看一下，发现存在大量并不需要的文件，比如 system-images 文件。我们基本上都是通过测试机调试程序的，所以这些镜像文件没有太大存在的意义，但是他们却又占用了很大的空间。为此，我自己写了一个镜像文件的同步脚本。这个会在后续发上来。
+
+在 nginx 上配置一个 dl.google.com 的网站。网站的 root 目录指向镜像文件所在的目录。
+
+## 客户端使用
+
+修改 hosts ，把 dl.google.com 指向内部镜像服务器的 ip 地址。
+
+如果没有 SDK 的话，需要先下载一个 SDK 的 zip 包。目前最新的是
+
+最新的 SDK 可以在 http://dl.google.com/android/repository/repository2-1.xml 这个文件中找到，解析这个 XML 文件，找到 remotePackage path="tool" ，找到对应的平台，然后找到对应的下载地址，比如 linux 的是 http://dl.google.com/android/repository/sdk-tools-linux-4333796.zip 。把这个 zip 下载下来，解压后，就是你的 SDK 目录了。注意设置一下环境变量。如果你的镜像服务器是好的，hosts 也配置了，这个下载非常快。注意要用 http 而不是 https。当然，这些工作完全可以写成一个脚本来完成，拉取 xml 配置，解析，判断操作系统，下载 zip 包，解压，进入 tools/bin/ 目录下，操作 sdkmanager 命令行。这些都可以写在一个脚本上完成。但是考虑到团队其他同事大多数用的 windows 系统，我自己用的是 linux，就懒得写这个下载 sdk 的脚本的。
+
+然后找到 sdkmanager 的位置，SDK_PATH/tools/bin/ 这个目录下，通过命令行就可以实现 SDK 的更新。
+
+## SDK 更新脚本
+
+sdkmanager 命令行的使用可以参考 <https://blog.binkery.com/articles/2018.05.04-android_sdkmanager.html> 。挺简单的，就是 windows 上敲命令行应该还是比较麻烦的。
+
+一个一个更新显然还是比较低效的，最好的办法就是写一个脚本，大家一起共享。
+
+## 脚本
+
+这是一个 linux 上的 bash 脚本，windows 可以参考一下。
+
+    #!/bin/bash
+    # 更新 tools
+    # 更新 docs 文档
+    # 更新 platform-tools
+    ./sdkmanager --no_https "tools" "docs" "platform-tools" --verbose
+    # 更新 android support 包
+    ./sdkmanager --no_https "extras;android;m2repository" --verbose
+    # 更新 build tools
+    # 这里我没有选择全部更新，只更新了当前项目中用到的几个版本，其他的版本可以根据每个人喜欢，自己添加。
+    ./sdkmanager --no_https "build-tools;19.1.0" "build-tools;20.0.0" "build-tools;21.1.2" "build-tools;22.0.1" "build-tools;25.0.0"
+    # 更新 platforms
+    # 这里我同样没有更新全部的，自己添加就行。
+    ./sdkmanager --no_https "platforms;android-23" "platforms;android-16"
+    # 更新 sources
+    # 这是更新源代码，方便大家调试的时候，可以方便的查看源代码
+    ./sdkmanager --no_https "sources;android-26" "sources;android-16" "sources;android-23"
+    # 更新 google play services
+    # 因为项目用到了 google play 的服务
+    ./sdkmanager --no_https "extras;google;google_play_services"
+    # 更新 google support
+    # 因为项目中用到了 google firebase 等服务
+    ./sdkmanager "extras;google;m2repository" --no_https

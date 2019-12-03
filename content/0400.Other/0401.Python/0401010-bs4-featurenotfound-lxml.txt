@@ -1,0 +1,13 @@
+# bs4.FeatureNotFound couldnot find a tree builder with the features you requested lxml
+# python,BeautifulSoup,lxml
+# 2019.04.06
+
+python 中使用 BeautifulSoup 解析 html 的时候报错：
+
+    bs4.FeatureNotFound: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+    
+根据提示，缺少 lxml 这个 feature 。需要通过 pip 安装 lxml 。
+
+    pip install lxml
+    
+    

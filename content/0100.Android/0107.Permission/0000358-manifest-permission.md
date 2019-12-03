@@ -17,7 +17,7 @@ Declares a security permission that can be used to limit access to specific comp
 
 - android:label 权限的一个描述，虽然可以直接使用 string ，但是还是建议使用 string 资源的应用。
 
-- android:name 权限的名字，这个名字将在相应的 <uses-permission、> 标签中被使用，这个名字必须是唯一的。推荐使用这个样子的格式： com.example.project.PERMITTED_ACTION 
+- android:name 权限的名字，这个名字将在相应的 <uses-permission\> 标签中被使用，这个名字必须是唯一的。推荐使用这个样子的格式： com.example.project.PERMITTED_ACTION 
 
 - android:permissionGroup 把这个权限指向一个群。这个属性的值必须是一个 group 的名字，这个名字是声明在这个或者其他的应用的 <permission-group\> 里的。这个属性可以没有设置。
 
