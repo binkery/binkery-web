@@ -1,5 +1,5 @@
-# Android Touch 事件机制
-- Android,touch,事件机制
+# Android 事件分发机制源码
+- Android,事件机制,Android事件分发机制源码
 
 Android Touch 事件机制。有很多通过 Log 输出的方式去分析　Android Touch　事件的分发机制，我这里是通过阅读源代码的方式来分析。
 
