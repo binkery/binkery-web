@@ -195,7 +195,7 @@ def get_title_from_source_file(path):
         if not os.path.exists(md_file):
             #print(os.path.basename(path))
             basename = os.path.basename(path)
-            return basename[4:]
+            return basename
     else:
         md_file = path
     with open(md_file,'r',encoding='utf-8') as f:
@@ -243,7 +243,7 @@ def get_nav():
         path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
-            nav += '<li class="nav-item"><a class="nav-link" href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(f[:4]) + '.html',title=title)
+            nav += '<li class="nav-item"><a class="nav-link" href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + f + '.html',title=title)
     return nav
     
 def get_sidebar():
@@ -255,7 +255,7 @@ def get_sidebar():
         path = os.path.join(app['source'],f)
         title = get_title_from_source_file(path)
         if os.path.isdir(path):
-            nav += '<li><a href="{link}">{title}</a>\n'.format(link=app['link'] + 'category/' + toInt(f[:4]) + '.html',title=title)
+            nav += '<li><a href="{link}">{title}</a>\n'.format(link=app['link'] + 'category/' + f + '.html',title=title)
             children = sorted(os.listdir(path),reverse=False)
             nav += '<ul>'
             for child in children:
@@ -264,7 +264,7 @@ def get_sidebar():
                 child_path = os.path.join(path,child)
                 child_title = get_title_from_source_file(child_path)
                 if os.path.isdir(child_path):
-                    nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + toInt(child[:4]) + '.html',title=child_title)
+                    nav += '<li><a href="{link}">{title}</a></li>\n'.format(link=app['link'] + 'category/' + child + '.html',title=child_title)
             nav += '</ul></li>'
     nav += ''
     return nav
@@ -280,7 +280,7 @@ def date_to(y,m,d):
     return (d2-d1).days
 
 def dispatch_tree(parent):
-    files = sorted(os.listdir(parent['source']),reverse=False)
+    files = sorted(os.listdir(parent['source']),reverse=True)
     for file in files:
         if file == 'README.md':
             continue
@@ -290,13 +290,13 @@ def dispatch_tree(parent):
         child['title'] = get_title_from_source_file(child['source'])
         parent['children'].append(child)
         if os.path.isdir(child['source']):
-            child['target'] = app['target'] + 'category/' + toInt(file[:4]) + '.html'
-            child['link'] = app['link'] + 'category/' + toInt(file[:4]) + '.html'
+            child['target'] = app['target'] + 'category/' + file + '.html'
+            child['link'] = app['link'] + 'category/' + file + '.html'
             child['children'] = []
             dispatch_tree(child)
         else:
-            child['target'] = app['target'] + 'archives/' + toInt(file[:7]) + '.html'
-            child['link'] = app['link'] + 'archives/' + toInt(file[:7]) + '.html'
+            child['target'] = app['target'] + 'archives/' + file[:-3] + '.html'
+            child['link'] = app['link'] + 'archives/' + file[:-3] + '.html'
         #print(child['link'] + ","  + child['title'])
         
     
