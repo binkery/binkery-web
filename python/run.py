@@ -74,9 +74,9 @@ def write_article_to_file(article):
             s.parentNode.insertBefore(hm, s);
         }})();
     </script>
-    <!-- gitalk 评论-->
+    <!-- gitalk 评论
     <link rel="stylesheet" href="https://unpkg.com/gitalk@1.5.0/dist/gitalk.css">
-    
+    -->
 </head>
 <body>
     <div class="container-fluid">
@@ -119,7 +119,9 @@ def write_article_to_file(article):
                          (adsbygoogle = window.adsbygoogle || []).push({{}});
                     </script>
                 </article>
+                <!--
                 <div id="gitalk-container"></div>
+                -->
             </div><!-- row content left -->
 
             <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
@@ -169,20 +171,22 @@ def write_article_to_file(article):
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
-    <script src="https://unpkg.com/gitalk@1.5.0/dist/gitalk.min.js"></script>
-    <script>
-        var gitalk = new Gitalk({{
-          clientID: 'b1641f3ff304a7d50317',
-          clientSecret: '4ce2efd92fe9ab3386edf0bf4a8736899639002c',
-          repo: 'blog-comments',
-          owner: 'binkery',
-          admin: ['binkery'],
-          id: location.pathname, 
-          distractionFreeMode: false 
-        }})
+    <!--
+        <script src="https://unpkg.com/gitalk@1.5.0/dist/gitalk.min.js"></script>
+        <script>
+            var gitalk = new Gitalk({{
+              clientID: 'b1641f3ff304a7d50317',
+              clientSecret: '4ce2efd92fe9ab3386edf0bf4a8736899639002c',
+              repo: 'blog-comments',
+              owner: 'binkery',
+              admin: ['binkery'],
+              id: location.pathname, 
+              distractionFreeMode: false 
+            }})
 
-        gitalk.render('gitalk-container')
-    </script>
+            gitalk.render('gitalk-container')
+        </script>
+    -->
 </body>
 </html>
 '''.format(article=article,app=app)
