@@ -97,8 +97,17 @@ def write_article_to_file(article):
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
                 
                 <div style="height: 100px;" class="d-flex justify-content-center mb-5">
-<!--                    <img src="https://binkery.com/img/ad1.png" class="mw-100 mh-100" alt="Responsive image">  -->   
-                 <script src='https://ad.0728w.cn/?id=8004&sign=2019122281248535982694'></script>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- binkery-article-header -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-5264794978178106"
+                         data-ad-slot="8596874190"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({{}});
+                    </script>
                 </div>
                 
                 <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
@@ -108,7 +117,6 @@ def write_article_to_file(article):
                      <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
                 </article>
                 <article>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-format="fluid"
@@ -134,12 +142,16 @@ def write_article_to_file(article):
                 <!-- 赞助 -->
                 <div class="card mb-3">
                     <div class="card-header">赞助商</div><div class="card-body">
-                        <script src='https://ad.0728w.cn/?id=8006&sign=2019122185450020002789'></script>
-                        <!--
-                        <div style="height: 200px;width：200px;" class="d-flex justify-content-center">
-                            <img src="https://binkery.com/img/ad2.jpg" class="mw-100 mh-100" alt="Responsive image">
-                        </div>
-                        -->
+                        <!-- binkery-sidebar -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-5264794978178106"
+                             data-ad-slot="9371185226"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({{}});
+                        </script>
                     </div>
                 </div><!--card -->
                 <!-- 赞助 -->
