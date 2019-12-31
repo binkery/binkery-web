@@ -96,7 +96,7 @@ def write_article_to_file(article):
             <div class="col-md-1 col-lg-1 col-xl-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
                 
-                <div style="height: 100px;" class="d-flex justify-content-center mb-5">
+                <article>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- binkery-article-header -->
                     <ins class="adsbygoogle"
@@ -108,7 +108,7 @@ def write_article_to_file(article):
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({{}});
                     </script>
-                </div>
+                </article>
                 
                 <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
                 <article>
