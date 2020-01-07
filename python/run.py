@@ -43,10 +43,6 @@ def write_article_to_file(article):
     <title>{article[title]} | Binkery 技术博客</title>
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
-    <!--友联 www.51link.com-->    
-    <meta name="auth" content="2410f01cc34c57702bbec8f884db18d5"/>
-    <!-- 2998.com -->
-    <meta name="wlhlauth" content="2a45547761b137cbffeff6b159972c1e"/>
     <meta name="baidu-site-verification" content="LgqE9vT9Dv" />
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
     <style type="text/css">
@@ -74,9 +70,6 @@ def write_article_to_file(article):
             s.parentNode.insertBefore(hm, s);
         }})();
     </script>
-    <!-- gitalk 评论
-    <link rel="stylesheet" href="https://unpkg.com/gitalk@1.5.0/dist/gitalk.css">
-    -->
 </head>
 <body>
     <div class="container-fluid">
@@ -165,7 +158,6 @@ def write_article_to_file(article):
 			        <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
 			        <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
 			        <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-			        <li><a href="https://www.stellarinfo.com/hk/" target="_blank">文件恢复软件</a></li>
                     <li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
                     </ul>
                     </div>
@@ -183,22 +175,6 @@ def write_article_to_file(article):
             </div>
         </div><!-- row footer -->
     </div><!-- container-fluid -->
-    <!--
-        <script src="https://unpkg.com/gitalk@1.5.0/dist/gitalk.min.js"></script>
-        <script>
-            var gitalk = new Gitalk({{
-              clientID: 'b1641f3ff304a7d50317',
-              clientSecret: '4ce2efd92fe9ab3386edf0bf4a8736899639002c',
-              repo: 'blog-comments',
-              owner: 'binkery',
-              admin: ['binkery'],
-              id: location.pathname, 
-              distractionFreeMode: false 
-            }})
-
-            gitalk.render('gitalk-container')
-        </script>
-    -->
 </body>
 </html>
 '''.format(article=article,app=app)
