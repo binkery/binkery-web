@@ -303,6 +303,12 @@ def out_put(node):
         for child in node['children']:
             node['content'] += '- [' + child['title'] + '](' + child['link'] + ')\n'
             out_put(child)
+    elif node['parent'] is not None:
+    	node['content'] += '\n## 相关文章 \n'
+    	for child in node['parent']['children']:
+    	    #pass
+    	    #print(child['link'])
+    	    node['content'] += '- [' + child['title'] + '](' + child['link'] + ')\n'
     write_article_to_file(node)
     
 def get_parent_path(node):
