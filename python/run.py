@@ -91,13 +91,12 @@ def write_article_to_file(article):
                 
                 <article>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- binkery-article-header -->
                     <ins class="adsbygoogle"
                          style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-gi-19+58-26-7b"
                          data-ad-client="ca-pub-5264794978178106"
-                         data-ad-slot="8596874190"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
+                         data-ad-slot="8172112958"></ins>
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({{}});
                     </script>
@@ -134,7 +133,8 @@ def write_article_to_file(article):
 
                 <!-- 赞助 -->
                 <div class="card mb-3">
-                    <div class="card-header">赞助商</div><div class="card-body">
+                    <div class="card-header">赞助商</div>
+                    <div class="card-body">
                         <!-- binkery-sidebar -->
                         <ins class="adsbygoogle"
                              style="display:block"
