@@ -54,8 +54,8 @@ def write_article_to_file(article):
             padding:1em;
         }}
         blockquote{{
-            border-left:5px solid rgba(0, 0, 0, 0.125);
-            padding:1em;
+            border-left:5px solid var(--green);
+            padding:0rem 1rem;
         }}
 	.card-body ul{{
   		padding-inline-start:1rem;
