@@ -104,9 +104,14 @@ def write_article_to_file(article):
                 
                 <nav><ol class="breadcrumb">{article[parent_path]}</ol></nav>
                 <article>
-                     {article[content]}
-                     <P> - EOF - </P>
-                     <p> 本文链接 <a href="{article[link]}"> {article[link]}</a>，欢迎转载，转载请注明出处。</p>
+                    {article[content]}
+                    <p> - EOF - </p>
+                    <blockquote>
+                    <p>本站文章除注明转载外，均为本站原创或编译。欢迎任何形式的转载，但请务必注明出处，尊重他人劳动。<br/>
+                    转载请注明：文章转载自 Binkery 技术博客 [<a href="https://binkery.com/">https://binkery.com</a>]<br/>
+                    本文标题：{article[title]}<br/>
+                    本文地址：<a href="{article[link]}"> {article[link]}</a></p>
+                    </blockquote>
                 </article>
                 <article>
                     <ins class="adsbygoogle"
