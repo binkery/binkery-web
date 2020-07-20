@@ -158,13 +158,14 @@ def write_article_to_file(article):
                 <div class="card mb-3">
                     <div class="card-header">友情链接</div><div class="card-body">
                     <ul>
-                    <li><a href="http://www.binkery.com/archives/1.html">友链申请</a></li>
-			        <li><a href="http://xiaohost.com/" target="_blank">老牛博客</a></li>
-			        <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
-			        <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
-			        <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-                    <li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
-                    <li><a href="http://www.shanghai60.org.cn" target="_blank">电影天堂网</a></li>
+	             	<li><a href="http://www.binkery.com/archives/1.html">友链申请</a></li>
+			<li><a href="http://xiaohost.com/" target="_blank">老牛博客</a></li>
+			<li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
+			<li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
+			<li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
+                    	<li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
+                    	<li><a href="http://94duo.com/" target="_blank">火币网</a></li>
+                    	<li><a href="http://www.shanghai60.org.cn" target="_blank">电影天堂网</a></li>
                     </ul>
                     </div>
                 </div>
