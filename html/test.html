@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Router Test</title>
+	</head>
+	<body>
+
+
+		<p><a href="hdf://yellowPage/doctorInfoVCWithParam?doctorID=123&doctorName=abc">医生黄页 hdf://yellowPage/doctorInfoVCWithParam?doctorID=123&doctorName=abc</a></p>
+
+		<p><a href="hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=netcase">小黄页 hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=netcase</a></p>
+
+		<p><a href="hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=expertfree">小黄页 hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=expertfree</a></p>
+
+		<p><a href="hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=videocase&facultyShiftId=123&onlineDoctorId=123">小黄页 hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=videocase&facultyShiftId=123&onlineDoctorId=123</a></p>
+
+
+		<p><a href="hdf://doctorClique/expertTeamInfoVCWithParams?teamId=7625330519">团队黄页 hdf://doctorClique/expertTeamInfoVCWithParams?teamId=7625330519</a></p>
+
+
+
+
+<!--
+		<p><a href="hdf://dos/iCServiceSelectedVCWithParam?baseFlowId=123&enterFrom=service_case&spaceId=780275529">服务选择页</a></p>
+-->
+		<p><a href="hdf://dos/iCServiceSelectedVCWithParam?enterFrom=service_case&spaceId=780275529">服务选择页 hdf://dos/iCServiceSelectedVCWithParam?enterFrom=service_case&spaceId=780275529</a></p>
+
+		<p><a href="hdf://dos/iCServiceSelectedVCWithParam?enterFrom=service_case&spaceId=563239527&doctorTeamHotId=6582864016">服务选择页 hdf://dos/iCServiceSelectedVCWithParam?enterFrom=service_case&spaceId=563239527&doctorTeamHotId=6582864016</a></p>
+		
+
+		<p><a href="hdf://homePage/freeClinic?isSimple=0">大提交流程 hdf://homePage/freeClinic?isSimple=0 </a></p>
+		<p><a href="hdf://homePage/freeClinic?isSimple=1">大提交流程 hdf://homePage/freeClinic?isSimple=1</a></p>
+
+		<p><a href="hdf://homePage/speedCase?isSimple=0">急速问诊 hdf://homePage/speedCase?isSimple=0 </a></p>
+		<p><a href="hdf://homePage/speedCase?isSimple=1">急速问诊 hdf://homePage/speedCase?isSimple=1</a></p>
+
+		<p><a href="hdf://newService/allOrdersVCWithParams?status=ongoing">订单列表页 hdf://newService/allOrdersVCWithParams?status=ongoing</a></p>
+
+		<script type="text/javascript">
+			function onItemClick(){
+				window.location.href ="hdf://yellowPage/pHDoctorIntroduceVCWithParam?doctorId=14628&serviceType=netcase"
+			}
+		</script>
+		<p><input type="button" name="" onclick="onItemClick()" value="window.location.href"></p>
+
+	</body>
+</html>
