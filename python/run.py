@@ -165,7 +165,6 @@ def write_article_to_file(article):
 			<li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
                     	<li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
                     	<li><a href="http://94duo.com/" target="_blank">火币网</a></li>
-                    	<li><a href="http://www.shanghai60.org.cn" target="_blank">电影天堂网</a></li>
                     </ul>
                     </div>
                 </div>
