@@ -1,2 +1,0 @@
-# Intent
-- Intent,IntentFilter
