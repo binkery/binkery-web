@@ -166,6 +166,7 @@ def write_article_to_file(article):
                     	<li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
                         <li><a href="http://94duo.com/" target="_blank">火币网</a></li>
                     	<li><a href="http://99ppc.com/tag/zhongbijiaoyisuoguanwang/" target="_blank">火币网</a></li>
+                        <li><a href="https://www.okex.me/academy/zh/article/master-9" target="_blank">区块链是什么意思</a></li>
                     </ul>
                     </div>
                 </div>
