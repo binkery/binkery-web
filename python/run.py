@@ -164,8 +164,11 @@ def write_article_to_file(article):
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
                     	<li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
+                        <!--2020.08.19 2898.com -->
                         <li><a href="http://94duo.com/" target="_blank">火币网</a></li>
+                        <!--2020.08.19 2898.com -->
                     	<li><a href="http://99ppc.com/tag/zhongbijiaoyisuoguanwang/" target="_blank">火币网</a></li>
+                        <!--2020.09.11 520link.com-->
                         <li><a href="https://www.okex.me/academy/zh/article/master-9" target="_blank">区块链是什么意思</a></li>
                         <!--2020.09.15 51link.com-->
                         <li><a href="http://qjlgb.com/dianshiju/" target="_blank">热播电视剧</a></li>
