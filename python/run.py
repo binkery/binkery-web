@@ -183,6 +183,7 @@ def write_article_to_file(article):
                     <ul>
                         <li>网站运行：{app[start_date]} 天</li>
                         <li>文章总数：{app[article_count]} 篇</li>
+                        <li><a href="https://tongji.baidu.com/web/welcome/ico?s=cceda2bd9bbe16209c98859a1cab0112">网站统计</a></li>
                     </ul>
                     </div>
                 </div>
