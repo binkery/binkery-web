@@ -351,7 +351,7 @@ app = {
 app['nav'] = get_nav()
 app['sidebar'] = get_sidebar()
 app['sitemap'] = []
-app['start_date'] = date_from(2019,11,1)
+app['start_date'] = date_from(2011,10,30)
 
 root = {
     'source':app['source'],
