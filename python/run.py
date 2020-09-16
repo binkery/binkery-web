@@ -364,11 +364,11 @@ root = {
     
 }
 dispatch_tree(root)
+app['article_count'] = len(app['sitemap'])
 out_put(root)
 sitemap = ''
 for link in app['sitemap']:
     sitemap += link + '\n'
-app['article_count'] = len(app['sitemap'])
 write(app['target'] + 'sitemap.txt',sitemap)
 
 
