@@ -312,13 +312,14 @@ def dispatch_tree(parent):
             child['target'] = app['target'] + 'archives/' + file[:-3] + '.html'
             child['link'] = app['link'] + 'archives/' + file[:-3] + '.html'
         #print(child['link'] + ","  + child['title'])
+        app['sitemap'].append(child['link'])
         
     
 def out_put(node):
     node['content'] = get_content_from_source_file(node['source'])
     node['keywords'] = get_key_workds_from_source_file(node['source'])
     node['parent_path'] = get_parent_path(node)
-    app['sitemap'].append(node['link'])
+    
     if os.path.isdir(node['source']):
         node['content'] += '\n## 文章列表 \n'
         for child in node['children']:
