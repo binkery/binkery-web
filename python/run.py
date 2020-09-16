@@ -163,7 +163,6 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-                    	<li><a href="https://spacepage.top" target="_blank">记录思考</a></li>
                         <!--2020.08.19 2898.com -->
                         <li><a href="http://94duo.com/" target="_blank">火币网</a></li>
                         <!--2020.08.19 2898.com -->
@@ -179,11 +178,13 @@ def write_article_to_file(article):
                 </div>
                 <!-- 友情链接 -->
                 <div class="card mb-3">
-                    <div class="card-header">网站统计</div><div class="card-body">
+                    <div class="card-header">网站统计</div>
+                    <div class="card-body">
                     <ul>
                         <li>网站运行：{app[start_date]} 天</li>
                         <li>文章总数：{app[article_count]} 篇</li>
                     </ul>
+                    </div>
                 </div>
             </div>
         </div><!-- row content -->
