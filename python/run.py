@@ -177,7 +177,14 @@ def write_article_to_file(article):
                     </ul>
                     </div>
                 </div>
-                 <!-- 友情链接 -->
+                <!-- 友情链接 -->
+                <div class="card mb-3">
+                    <div class="card-header">网站统计</div><div class="card-body">
+                    <ul>
+                        <li>网站运行：{app[start_date]} 天</li>
+                        <li>文章总数：{app[article_count]} 篇</li>
+                    </ul>
+                </div>
             </div>
         </div><!-- row content -->
 
@@ -343,6 +350,7 @@ app = {
 app['nav'] = get_nav()
 app['sidebar'] = get_sidebar()
 app['sitemap'] = []
+app['start_date'] = date_from(2019,11,1)
 
 root = {
     'source':app['source'],
@@ -360,7 +368,7 @@ out_put(root)
 sitemap = ''
 for link in app['sitemap']:
     sitemap += link + '\n'
-
+app['article_count'] = len(app['sitemap'])
 write(app['target'] + 'sitemap.txt',sitemap)
 
 
