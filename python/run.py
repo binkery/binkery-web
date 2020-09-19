@@ -170,7 +170,7 @@ def write_article_to_file(article):
                         <!--2020.09.11 520link.com-->
                         <li><a href="https://www.okex.me/academy/zh/article/master-9" target="_blank">区块链是什么意思</a></li>
                         <!--2020.09.15 51link.com-->
-                        <li><a href="http://qjlgb.com/dianshiju/" target="_blank">热播电视剧</a></li>
+                        <li><a href="http://www.qjlgb.com/dianshiju/" target="_blank">热播电视剧</a></li>
                         <!--2020.09.15 51link.com-->
                         <li><a href="http://www.nmgredcross.org.cn/story/" target="_blank">剧情吧</a></li>                        
                     </ul>
