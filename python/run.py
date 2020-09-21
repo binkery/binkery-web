@@ -140,7 +140,7 @@ def write_article_to_file(article):
                 <div class="card mb-3">
                     <div class="card-header">赞助商</div>
                     <div class="card-body">
-                        <script id="w2898_12412">(function () {{var zy = document.createElement("script");var flowExchange = window.location.protocol.split(":")[0];var http = flowExchange === "https"?"https":"http";zy.src = http+"://exchange.2898.com/index/flowexchange/getGoods?id=12412&sign=9704b3d117a1a68561d486db1c4d0415";var s = document.getElementsByTagName("script");for(var i=0;i< s.length;i++){{if(s[i].id){{if(s[i].id == "w2898_12412"){{s[i].parentNode.insertBefore(zy, s[i]);continue;}}}}}}}})();</script>
+                        <script id="w2898_12413">(function () {{var zy = document.createElement("script");var flowExchange = window.location.protocol.split(":")[0];var http = flowExchange === "https"?"https":"http";zy.src = http+"://exchange.2898.com/index/flowexchange/getGoods?id=12413&sign=7e3985daf1bfcbf3e8a408a2172a4411";var s = document.getElementsByTagName("script");for(var i=0;i< s.length;i++){{if(s[i].id){{if(s[i].id == "w2898_12413"){{s[i].parentNode.insertBefore(zy, s[i]);continue;}}}}}}}})();</script>
                     </div>
                 </div><!--card -->
                 <!-- 赞助 -->
