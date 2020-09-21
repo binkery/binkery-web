@@ -140,16 +140,7 @@ def write_article_to_file(article):
                 <div class="card mb-3">
                     <div class="card-header">赞助商</div>
                     <div class="card-body">
-                        <!-- binkery-sidebar -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-5264794978178106"
-                             data-ad-slot="9371185226"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({{}});
-                        </script>
+                        <script id="w2898_12412">(function () {{var zy = document.createElement("script");var flowExchange = window.location.protocol.split(":")[0];var http = flowExchange === "https"?"https":"http";zy.src = http+"://exchange.2898.com/index/flowexchange/getGoods?id=12412&sign=9704b3d117a1a68561d486db1c4d0415";var s = document.getElementsByTagName("script");for(var i=0;i< s.length;i++){{if(s[i].id){{if(s[i].id == "w2898_12412"){{s[i].parentNode.insertBefore(zy, s[i]);continue;}}}}}}}})();</script>
                     </div>
                 </div><!--card -->
                 <!-- 赞助 -->
@@ -163,9 +154,7 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-                        <!--2020.08.19 2898.com -->
-                        <li><a href="http://94duo.com/" target="_blank">火币网</a></li>
-                        <!--2020.08.19 2898.com -->
+                        <!--2020.09.22 2898.com -->
                     	<li><a href="http://99ppc.com/tag/zhongbijiaoyisuoguanwang/" target="_blank">火币网</a></li>
                         <!--2020.09.11 520link.com-->
                         <li><a href="https://www.okex.me/academy/zh/article/master-9" target="_blank">区块链是什么意思</a></li>
