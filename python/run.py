@@ -161,7 +161,9 @@ def write_article_to_file(article):
                         <!--2020.09.15 51link.com-->
                         <li><a href="http://www.qjlgb.com/dianshiju/" target="_blank">热播电视剧</a></li>
                         <!--2020.09.15 51link.com-->
-                        <li><a href="http://www.nmgredcross.org.cn/story/" target="_blank">剧情吧</a></li>                        
+                        <li><a href="http://www.nmgredcross.org.cn/story/" target="_blank">剧情吧</a></li>
+                        <!--2020.09.22 51link.com-->
+                        <li><a href="http://www.ymjump.com/xy/" target="_blank">白银期货直播间</a></li>
                     </ul>
                     </div>
                 </div>
