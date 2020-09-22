@@ -114,14 +114,16 @@ def write_article_to_file(article):
                     </blockquote>
                 </article>
                 <article>
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-format="fluid"
-                         data-ad-layout-key="-gi-19+58-26-7b"
-                         data-ad-client="ca-pub-5264794978178106"
-                         data-ad-slot="8172112958"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({{}});
+                    <script type="text/javascript">
+                        document.write('<a style="display:none!important" id="tanx-a-mm_103116298_40854605_110857550142"></a>');
+                        tanx_s = document.createElement("script");
+                        tanx_s.type = "text/javascript";
+                        tanx_s.charset = "gbk";
+                        tanx_s.id = "tanx-s-mm_103116298_40854605_110857550142";
+                        tanx_s.async = true;
+                        tanx_s.src = "//p.tanx.com/ex?i=mm_103116298_40854605_110857550142";
+                        tanx_h = document.getElementsByTagName("head")[0];
+                        if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
                     </script>
                 </article>
                 <!--
