@@ -86,8 +86,8 @@ def write_article_to_file(article):
         </div><!-- row nav -->
 
         <div class="row">
-            <div class="col-md-1 col-lg-1 col-xl-2"></div>
-            <div class="col-sm-12 col-md-10 col-lg-10 col-xl-6">
+            <div class="col-lg-1 col-xl-1"></div>
+            <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 
                 <article>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -131,7 +131,7 @@ def write_article_to_file(article):
                 -->
             </div><!-- row content left -->
 
-            <div class="col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1 col-xl-2 offset-xl-0">
+            <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <!-- 目录树 -->
                 <div class="card mb-3">
                     <div class="card-header">目录树</div><div class="card-body"><ul>{app[sidebar]}</ul></div>
