@@ -146,10 +146,6 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-                        <!--2020.09.22 2898.com -->
-                    	<li><a href="http://99ppc.com/tag/zhongbijiaoyisuoguanwang/" target="_blank">火币网</a></li>                        
-                        <!--2020.09.22 51link.com-->
-                        <li><a href="http://www.ymjump.com/xy/" target="_blank">白银期货直播间</a></li>
                     </ul>
                     </div>
                 </div>
