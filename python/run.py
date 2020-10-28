@@ -146,6 +146,8 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
+                        <!--2020.10.28 51link.com-->
+                        <li><a href="http://www.nmgredcross.org.cn/dianying/" target="_blank">星辰电影网</a></li>
                     </ul>
                     </div>
                 </div>
