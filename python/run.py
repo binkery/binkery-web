@@ -176,6 +176,7 @@ def write_article_to_file(article):
 '''.format(article=article,app=app)
     #print(local_path)
     write(local_path,template)
+    article['content'] = ""
     
 def get_title_from_source_file(path):
     if os.path.isdir(path):
