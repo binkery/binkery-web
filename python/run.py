@@ -137,8 +137,6 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-                        <!--2020.11.29 51link.com-->
-                        <li><a href="http://www.tprc.org.cn/" target="_blank">星空电影网</a></li>
                         <!--2020.12.02 520link.com-->
                         <li><a href="https://www.okexcn.com/" target="_blank">okex</a></li>
                         <!--2020.12.14 51link.com-->
