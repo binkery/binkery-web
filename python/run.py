@@ -139,10 +139,8 @@ def write_article_to_file(article):
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
                         <!--2020.12.02 520link.com-->
                         <li><a href="https://www.okexcn.com/" target="_blank">okex</a></li>
-                        <!--2020.12.14 51link.com-->
-                        <li><a href="http://www.hzjzxh.org/" target="_blank">小草影院</a></li>
-                        <!--2020.12.24 51link.com-->
-                        <li><a href="http://lggsl.org/type-dianying.html" target="_blank">好看的电影</a></li>
+                        <!--2021.01.28 51link.com-->
+                        <li><a href="http://www.weihuitsg.cn/anime/" target="_blank">樱花动漫</a></li>
                     </ul>
                     </div>
                 </div>
