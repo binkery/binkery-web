@@ -7,6 +7,12 @@ import markdown
 import time
 import html
 from bs4 import BeautifulSoup
+#from do_cprofile import do_cprofile
+#import mistune
+#from misaka import Markdown , HtmlRenderer
+
+#rndr = HtmlRenderer()
+#md = Markdown(rndr)
 
 def write(path,content):
     dir = os.path.dirname(path)
@@ -21,10 +27,22 @@ def remove_tags(text):
     return BeautifulSoup(text, "lxml").text
         
 def write_article_to_file(article):
-    article_content = markdown.markdown(article['content'])
+    
     local_path = article['target']
     #print(article_content)
-    article['description'] = remove_tags(article_content)[:100].replace('\n','')
+    temp_size = readFileAsLength(article['temp'] + '_contentsize')
+    if temp_size == len(article['content']):
+        article_content = readFileAllContent(article['temp'] + '_content')
+        article['description'] = readFileAllContent(article['temp'] + '_description')
+    else :
+        print('not hit ' + str(temp_size) + ',' + article['temp'] + ', source = ' + article['source'])
+        article_content = markdown.markdown(article['content'])
+        article['description'] = remove_tags(article_content)[:100].replace('\n','')
+        write(article['temp'] + '_contentsize',str(len(article['content'])))
+        write(article['temp'] + '_content',article_content)
+        write(article['temp'] + '_description',article['description'])
+        
+
     #article['keywords'] = ''
     article['content'] = article_content
     #print(local_path)
@@ -206,7 +224,20 @@ def get_key_workds_from_source_file(path):
         f.readline()
         keywords = f.readline().strip().lstrip('-')
         return keywords
-    
+
+def readFileAsLength(path):
+    if not os.path.exists(path):
+        return 0
+    with open(path,'r',encoding='utf-8') as f:
+        content = f.read()
+        return int(content)
+
+def readFileAllContent(path):
+    if not os.path.exists(path):
+        return ''
+    with open(path,'r',encoding='utf-8') as f:
+        content = f.read()
+        return content
     
 def toInt(path):
     try:
@@ -260,6 +291,7 @@ def date_to(y,m,d):
     d2 = datetime.date(y,m,d)
     return (d2-d1).days
 
+
 def dispatch_tree(parent):
     files = sorted(os.listdir(parent['source']),reverse=True)
     for file in files:
@@ -273,15 +305,17 @@ def dispatch_tree(parent):
         if os.path.isdir(child['source']):
             child['target'] = app['target'] + 'category/' + file + '.html'
             child['link'] = app['link'] + 'category/' + file + '.html'
+            child['temp'] = app['temp'] + 'category_' + file
             child['children'] = []
             dispatch_tree(child)
         else:
             child['target'] = app['target'] + 'archives/' + file[:-3] + '.html'
             child['link'] = app['link'] + 'archives/' + file[:-3] + '.html'
+            child['temp'] = app['temp'] + 'archives_' + file[:-3]
         #print(child['link'] + ","  + child['title'])
         app['sitemap'].append(child['link'])
         
-    
+
 def out_put(node):
     node['content'] = get_content_from_source_file(node['source'])
     node['keywords'] = get_key_workds_from_source_file(node['source'])
@@ -304,13 +338,14 @@ def get_parent_path(node):
     if node == None:
         return ''
     return get_parent_path(node['parent']) + '<li class="breadcrumb-item"><a href="{link}">{title}</a></li>'.format(link=node['link'],title=html.escape(node['title'])) 
-    
-    
+
+
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
 
 app = {
     'source':'../content/',
     'target':'../html/',
+    'temp':'../temp/',
     'link':'https://binkery.com/',
     'last_modify_time':datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S"),
     'name':'Binkery技术博客'
@@ -324,6 +359,7 @@ root = {
     'source':app['source'],
     'link':app['link'],
     'target':app['target'] + 'index.html',
+    'temp':app['temp'],
     'content':'',
     'parent':None,
     'children':[],
@@ -331,14 +367,15 @@ root = {
     'keywords':''
     
 }
-dispatch_tree(root)
-app['article_count'] = len(app['sitemap'])
-out_put(root)
-sitemap = ''
-for link in app['sitemap']:
-    sitemap += link + '\n'
-write(app['target'] + 'sitemap.txt',sitemap)
 
+#@do_cprofile("./mkm_run.prof")
+def run():
+    dispatch_tree(root)
+    app['article_count'] = len(app['sitemap'])
+    out_put(root)
+    sitemap = ''
+    for link in app['sitemap']:
+        sitemap += link + '\n'
+    write(app['target'] + 'sitemap.txt',sitemap)
 
-
-
+run()
