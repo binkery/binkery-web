@@ -155,6 +155,8 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
+                        <li><a href="https://www.okexo.com/" target="_blank">okex</a></li>
+                        
                     </ul>
                     </div>
                 </div>
