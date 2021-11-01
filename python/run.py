@@ -155,6 +155,7 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
+			<li><a href="http://chanduan.com/p/28os73got3mxukx7" target="_blank">比特派钱包是数字货币的第三方管</a></li>
                     </ul>
                     </div>
                 </div>
