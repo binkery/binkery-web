@@ -156,6 +156,7 @@ def write_article_to_file(article):
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
 			<li><a href="https://www.llyz.net" target="_blank">imtoken钱包</a></li>
+			<li><a href="https://czjy.cn" target="_blank">imtoken钱包下载</a></li>
                     </ul>
                     </div>
                 </div>
