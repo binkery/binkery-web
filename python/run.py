@@ -343,9 +343,9 @@ def get_parent_path(node):
 cst_tz = datetime.timezone(datetime.timedelta(hours=8))
 
 app = {
-    'source':'../../content/',
-    'target':'../../html/',
-    'temp':'../../temp/',
+    'source':'./content/',
+    'target':'./html/',
+    'temp':'./temp/',
     'link':'https://binkery.com/',
     'last_modify_time':datetime.datetime.now(tz=cst_tz).strftime("%Y-%m-%d %H:%M:%S"),
     'name':'Binkery技术博客'
