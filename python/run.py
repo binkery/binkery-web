@@ -83,7 +83,7 @@ def write_article_to_file(article):
         var _hmt = _hmt || [];
         (function() {{
             var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?cceda2bd9bbe16209c98859a1cab0112";
+            hm.src = "https://hm.baidu.com/hm.js?292fa5252c0d5ec97c067bc3fc6d771c";
             var s = document.getElementsByTagName("script")[0]; 
             s.parentNode.insertBefore(hm, s);
         }})();
@@ -155,8 +155,6 @@ def write_article_to_file(article):
                         <li><a href="https://www.xiaoz.me/" target="_blank">小z博客</a></li>
                         <li><a href="https://www.oldpan.me/" target="_blank">Oldpan的个人博客</a></li>
                         <li><a href="https://www.oldking.net/" target="_blank">老鬼的博客</a></li>
-			<!-- 2898.com 22.10.25 -->
-			<li><a href="https://www.tokenpockety.net" target="_blank">tp钱包下载</a></li>
                     </ul>
                     </div>
                 </div>
