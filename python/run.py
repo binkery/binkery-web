@@ -62,7 +62,7 @@ def write_article_to_file(article):
     <meta name="keywords" content="{article[keywords]}">
     <meta name="description" content="{article[description]}">
     <meta name="baidu-site-verification" content="LgqE9vT9Dv" />
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
         pre{{
             background-color:#f8f9fa;
